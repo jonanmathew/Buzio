@@ -1,0 +1,200 @@
+*,*::after,*::before{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    font-family: 'Rubik', sans-serif;
+}
+
+#bg-img{
+    position: absolute;
+    height: 648px;
+    width: 1263px;
+}
+
+h1{
+    position: relative;
+    left: 100px;
+    margin: 0;
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    line-height: 4.5rem;
+}
+
+h2{
+    position: relative;
+    left: 100px;
+    margin: 0;
+    font-size: 1rem;
+}
+
+a{
+    text-decoration: none;
+    position: relative;
+    color: #fff;
+}
+
+.nav-bar{
+    position: relative;
+    display: block;
+    padding: 30px;
+}
+
+.nav-logo{
+    height: 3rem;
+    position: relative;
+    left: 105px;
+    top: 8px;
+    background: url("../images/Buzio5.png") no-repeat;
+}
+
+.nav-logo:hover{
+    background: url(../images/Buzio8.png) no-repeat;
+}
+
+.nav-title{
+    position: relative;
+    left: 100px;
+    font-size: 1.5rem;
+}
+
+.nav-title:hover{
+    color: #FF7757;
+}
+
+.nav-tags{
+    left: 300px;
+    margin: 20px;
+}
+
+.nav-tags:hover{
+    text-decoration: underline;
+    text-decoration-color: #FF7757;
+}
+
+.nav-admin{
+    left: 570px;
+    padding: 5px;
+    color: #FF7757;
+}
+
+.nav-admin:hover{
+    background-color: #fff;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+.title-bar{
+    position: relative;
+    margin: 80 0 0 0;
+    width: 50%;
+    display: block;
+    color: #fff;
+}
+
+.search-bar{
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.7);
+    margin: 100 0 0 100;
+    height: 120px;
+    box-shadow: 0 1.5rem 4rem rgb(0 0 0 /20%);
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.btn-search{  
+    position: relative;      
+    padding: 48px;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    background-color: #FF7757;  
+    float: left;    
+}
+
+.btn-book{
+    font-size: 1.5rem;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 700;
+}
+
+/* .btn-book{
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    background-color: inherit;
+    color: #fff;
+    text-decoration: none;
+    font-size: 2rem;
+    text-align: center;
+    top: 40px;
+    left: 0px;
+    font-family: 'Rubik', sans-serif;
+} */
+
+/* .arrow-right{
+    position: absolute;
+    width: 40px;
+    top: 58px;
+    left: 100px;
+} */
+
+.search-details{
+    position: relative;
+    display: inline-block;
+    padding: 30px;
+}
+
+.search-item{
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    display: inline-block;
+    position: relative;
+}
+
+.form-input{
+    border: none;
+    border-bottom: 2px solid #FF7757;
+    appearance: none;
+    outline: none;
+    background-color: transparent;
+    padding: 12px 12px 0px;
+    width: 190px;
+    font-size: 1rem;
+    font-weight: 300;
+    font-family: 'Rubik', sans-serif;
+}
+
+.placeholder{
+    position: absolute;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 300;
+    left: 30px;
+    top: 20px;
+    color: #000;
+    transition: 
+        top 0.3s ease,
+        font-size 0.3s ease,
+        color 0.3s ease;
+
+}
+
+.form-input:valid + .placeholder,
+.form-input:focus + .placeholder{
+    color: #777;
+    top: 0;
+    font-size: 1rem;
+
+}
+
+/* Pricing */
+
+.footer{
+    background-color: #172432;
+    padding: 50px;
+}

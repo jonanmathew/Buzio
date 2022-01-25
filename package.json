@@ -1,0 +1,15 @@
+{
+  "name": "bus-management",
+  "version": "1.0.0",
+  "description": "Bus Management Site",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jonan Mathew George",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.2",
+    "mysql2": "^2.3.3"
+  }
+}

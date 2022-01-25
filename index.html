@@ -1,0 +1,183 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Management</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;600&family=Playfair+Display:wght@700&family=Rubik:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="public/css/styles_index.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="public/images/Buzio4.jpeg">  
+</head>
+<body>
+    <img id="bg-img" src="public/images/landing.jpg" alt="Bus">
+
+    <div class="nav-bar">
+        <img class="nav-logo" src="public/images/Buzio5.png" alt="logo">
+        <a class="nav-title" href="/">Buzio</a>
+        <a class="nav-tags">Home</a> 
+        <a class="nav-tags">Explore</a>
+        <a class="nav-tags">Travel</a>
+        <a class="nav-tags">Blog</a> 
+        <a class="nav-tags">Pricing</a>
+        <a class="nav-admin" href="auth.html">Admin</a>
+    </div>
+
+    <div class="title-bar">
+        <h1>Book your Bus<br>tickets with us.</h1>
+        <h2>The best travel for your journey begins now.</h2>
+    </div>
+
+    <div class="search-bar">
+        <form action="#">
+            <div class="btn-search">
+                <!-- <button class="btn-book">Search</button> -->
+                <a class="btn-book" href="user.html">Search</a>
+                <!-- <img src="public/images/arrow.png" alt="Arrow_Right" class="arrow-right"> -->
+            </div>
+            <div class="search-details">
+                <div class="search-item">
+                    <input class="form-input" type="text" required>
+                    <span class="placeholder">From</span>
+                </div>
+                <div class="search-item search-item-2">
+                    <input class="form-input" type="text" required>
+                    <span class="placeholder">To</span>
+                </div>
+                <div class="search-item search-item-3">
+                    <input class="form-input" type="number" min="1" max="5" required>
+                    <span class="placeholder">Person(s)</span>
+                </div>
+                <div class="search-item search-item-4">
+                    <input class="form-input" type="date" required>
+                    <span class="placeholder">Date</span>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <footer class="footer">
+      <div>
+        <h3>Buzio</h3>
+        <p>© Buzio 2022<br>All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- <section class="section-tours" id="section-tours">
+        <div class="u-center-text u-margin-bottom-big">
+          <h2 class="heading-secondary">
+            Most popular tours
+          </h2>
+        </div>
+
+        <div class="row">
+          <div class="col-1-of-3">
+            <div class="card">
+              <div class="card__side card__side--front">
+                <div class="card__picture card__picture--1">
+
+                </div>
+                <h4 class="card__heading">
+                  <span class="card__heading-span card__heading-span--1">
+                    The Sea Explorer
+                  </span>
+                </h4>
+                <div class="card__details">
+                  <ul>
+                    <li>3 day tours</li>
+                    <li>Up to 30 people</li>
+                    <li>2 tour guides</li>
+                    <li>Sleep in cozy hotels</li>
+                    <li>Difficulty:easy</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="card__side card__side--back card__side--back-1"> 
+                <div class="card__cta">
+                  <div class="card__price-box">
+                    <p class="card__price-only">Only</p>
+                    <p class="card__price-value">$297</p>
+                  </div>
+                  <a href="#popup" class="btn btn--white">Book Now!</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-1-of-3">
+            <div class="card">
+              <div class="card__side card__side--front">
+                <div class="card__picture card__picture--2">
+
+                </div>
+                <h4 class="card__heading">
+                  <span class="card__heading-span card__heading-span--2">
+                    The Forest Hiker
+                  </span>
+                </h4>
+                <div class="card__details">
+                  <ul>
+                    <li>7 day tour</li>
+                    <li>Up to 40 people</li>
+                    <li>6 tour guides</li>
+                    <li>Sleep in provided tents</li>
+                    <li>Difficulty:medium</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="card__side card__side--back card__side--back-2"> 
+                <div class="card__cta">
+                  <div class="card__price-box">
+                    <p class="card__price-only">Only</p>
+                    <p class="card__price-value">$497</p>
+                  </div>
+                  <a href="#popup" class="btn btn--white">Book Now!</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-1-of-3">
+            <div class="card">
+              <div class="card__side card__side--front">
+                <div class="card__picture card__picture--3">
+
+                </div>
+                <h4 class="card__heading">
+                  <span class="card__heading-span card__heading-span--3">
+                    The Snow Adventurer
+                  </span>
+                </h4>
+                <div class="card__details">
+                  <ul>
+                    <li>5 day tours</li>
+                    <li>Up to 15 people</li>
+                    <li>3 tour guides</li>
+                    <li>Sleep in provided tents</li>
+                    <li>Difficulty:hard</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="card__side card__side--back card__side--back-3"> 
+                <div class="card__cta">
+                  <div class="card__price-box">
+                    <p class="card__price-only">Only</p>
+                    <p class="card__price-value">$897</p>
+                  </div>
+                  <a href="#popup" class="btn btn--white">Book Now!</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="u-center-text u-margin-top-huge">
+          <a href="#" class="btn btn--green">Discover all tours</a>
+        </div>
+
+      </section> -->
+
+</html>
