@@ -225,6 +225,9 @@ a{
     font-size: 1.5rem;
     font-family: 'Josefin Sans', sans-serif;
     font-weight: 700;
+    background-color: #FF7757;
+    border: none;
+    cursor: pointer;
 }
 
 .btn-animated {

@@ -7,12 +7,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;600&family=Playfair+Display:wght@700&family=Rubik:wght@300;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="public/css/styles_admin.css">
+    <link rel="stylesheet" href="css/styles_admin.css">
     <link rel="icon" type="image/png" sizes="32x32" href="public/images/Buzio4.jpeg">  
 </head>
 <body>
     <div class="nav-bar">
-        <img class="nav-logo" src="public/images/Buzio5.png" alt="logo">
+        <img class="nav-logo" src="images/Buzio5.png" alt="logo">
         <a class="nav-title" href="/">Buzio</a>
         <a class="nav-add" href="#popup">Add+</a>
     </div>
@@ -40,59 +40,59 @@
     <div id="popup" class="popup">
         <div class="popup-content">
             <a class="popup-close" href="#main-page">x</a>
-            <form action="#">
+            <form action="/" method="post" autocomplete="on">
                 <div class="add-details">
                     <h3>Add New Bus</h3>
                     <div class="add-item">
-                        <input class="form-input" type="number" min="1" required>
+                        <input name="busNo" class="form-input" type="number" min="1" required>
                         <span class="placeholder">Bus No.</span>
                     </div>
                     <div class="add-item">
-                        <input class="form-input" type="text" required>
+                        <input name="driverName" class="form-input" type="text" required>
                         <span class="placeholder">Driver Name</span>
                     </div>
                     <div class="add-item">
-                        <input class="form-input" type="text" required>
+                        <input name="startLocation" class="form-input" type="text" required>
                         <span class="placeholder">Start Location</span>
                     </div>
                     <div class="add-item">
-                        <input class="form-input" type="text" required>
+                        <input name="endLocation" class="form-input" type="text" required>
                         <span class="placeholder">End Location</span>
                     </div>
                     <div class="add-item">
-                        <input class="form-input" type="time" required>
+                        <input name="startTime" class="form-input" type="time" required>
                         <span class="placeholder">Start Time</span>
                     </div>
                     <div class="add-item">
-                        <input class="form-input" type="time" required>
+                        <input name="endTime" class="form-input" type="time" required>
                         <span class="placeholder">End Time</span>
                     </div>
                     <div class="add-item">
-                        <input class="form-input" type="date" required>
+                        <input name="startDate" class="form-input" type="date" required>
                         <span class="placeholder">Start Date</span>
                     </div>
                     <div class="add-item">
-                        <input class="form-input" type="date" required>
+                        <input name="endDate" class="form-input" type="date" required>
                         <span class="placeholder">End Date</span>
                     </div>
                     <div class="add-item">
-                        <input class="form-input" type="number" min="1" required>
+                        <input name="seats" class="form-input" type="number" min="1" required>
                         <span class="placeholder">Seats</span>
                     </div>
                     <div class="add-item">
-                        <input class="form-input" type="text" required>
+                        <input name="busType" class="form-input" type="text" required>
                         <span class="placeholder">Bus Type</span>
                     </div>
                     <div class="add-item">
-                        <input class="form-input" type="text" required>
+                        <input name="sleeperType" class="form-input" type="text" required>
                         <span class="placeholder">Sleeper Type</span>
                     </div>
                     <div class="add-item">
-                        <input class="form-input" type="text" required>
+                        <input name="foodAvailable" class="form-input" type="text" required>
                         <span class="placeholder">Food Available</span>
                     </div>
                     <div class="btn-add btn-animated">
-                        <a class="btn-book" href="user.html">Create</a>
+                        <button class="btn-book"  type="submit">Create</button>
                     </div>
                 </div>
             </form>
