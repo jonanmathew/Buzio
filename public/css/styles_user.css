@@ -161,6 +161,10 @@ h6{
     font-size: 1.5rem;
     font-family: 'Josefin Sans', sans-serif;
     font-weight: 700;
+    background-color: #FF7757;
+    border: none;
+    color: #fff;
+    cursor: pointer;
 }
 
 .btn-animated {
@@ -194,7 +198,15 @@ h6{
     border: 2px solid #55c57a;
     box-shadow: 0 0 30px #888888;
 }
-/* background-image: linear-gradient(to right, #7ed56f, #28b485); */
+
+
+.error-msg{
+    width: 65%;
+    margin: 20px 50px;
+    padding: 30px;
+    font-size: 2.5rem;
+}
+
 .bus-1{
     display: inline-block;
     margin: 10px;
@@ -224,24 +236,24 @@ h6{
 }
 
 .bus-start-time{
-    margin: 10px 40px 2.5px 10px;
+    margin: 10px 45px 2.5px 10px;
 }
 
 .bus-travel-time{
-    margin: 10px 60px 2.5px 60px;
+    margin: 10px 63px 2.5px 63px;
 }
 
 .bus-end-time{
-    margin: 10px 10px 2.5px 40px;
+    margin: 10px 10px 2.5px 45px;
     text-align: right;
 }
 
 .bus-start-date{
-    margin: 2.5px 90px 15px 10px;
+    margin: 2.5px 60px 15px 10px;
 }
 
 .bus-end-date{
-    margin: 2.5px 10px 15px 90px;
+    margin: 2.5px 10px 15px 60px;
     text-align: right;
 }
 

@@ -30,27 +30,27 @@
     </div>
 
     <div class="search-bar">
-        <form action="#">
+        <form action="/user.html" method="get">
             <div class="btn-search">
-                <!-- <button class="btn-book">Search</button> -->
-                <a class="btn-book" href="user.html">Search</a>
+                <button class="btn-book" type="submit">Search</button>
+                <!-- <a class="btn-book" href="user.html">Search</a> -->
                 <!-- <img src="public/images/arrow.png" alt="Arrow_Right" class="arrow-right"> -->
             </div>
             <div class="search-details">
                 <div class="search-item">
-                    <input class="form-input" type="text" required>
+                    <input class="form-input" type="text" name="from" required>
                     <span class="placeholder">From</span>
                 </div>
                 <div class="search-item search-item-2">
-                    <input class="form-input" type="text" required>
+                    <input class="form-input" type="text" name="to" required>
                     <span class="placeholder">To</span>
                 </div>
                 <div class="search-item search-item-3">
-                    <input class="form-input" type="number" min="1" max="5" required>
+                    <input class="form-input" type="number" min="1" max="5" name="persons" required>
                     <span class="placeholder">Person(s)</span>
                 </div>
                 <div class="search-item search-item-4">
-                    <input class="form-input" type="date" required>
+                    <input class="form-input" type="date" name="date" required>
                     <span class="placeholder">Date</span>
                 </div>
             </div>
