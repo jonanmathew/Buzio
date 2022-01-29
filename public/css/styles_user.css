@@ -20,6 +20,20 @@ a{
     color: #fff;
 }
 
+h4{
+    display: inline-block;
+}
+
+h5{
+    display: inline-block;
+    color: #777;
+}
+
+h6{
+    display: inline-block;
+    color: #777;
+}
+
 .nav-bar{
     background-image: linear-gradient(to right, rgba(19,41,104), rgba(94,144,204));
     position: relative;
@@ -79,12 +93,11 @@ a{
     background-color: rgba(172 ,206 ,239, 0.5);
     margin: 20px 50px;
     height: 450px;
-    border: 2px solid #FF7757;
     border-radius: 10px;
     padding: 30px;
     left: 870px;
-    box-shadow: 0 0 30px #888888;
-
+    border: 2px solid #FF7757;
+    transition: all .5s;
 }
 
 .search-details{
@@ -116,6 +129,7 @@ a{
 .placeholder{
     position: absolute;
     font-family: 'Josefin Sans', sans-serif;
+    font-size: 1.1rem;
     font-weight: 300;
     left: 30px;
     top: 20px;
@@ -166,11 +180,106 @@ a{
     display: inline-block;
     position: relative;
     background-color: rgba(172 ,206 ,239, 0.5);
-    width: 60%;
-    margin: 20px 100px;
+    width: 65%;
+    margin: 20px 50px;
     height: 150px;
-    border: 2px solid #FF7757;
     border-radius: 10px;
     padding: 10px;
+    border: 2px solid #FF7757;
+    transition: all .5s;
+    cursor: pointer;
+}
+
+.items:hover{
+    border: 2px solid #55c57a;
     box-shadow: 0 0 30px #888888;
+}
+/* background-image: linear-gradient(to right, #7ed56f, #28b485); */
+.bus-1{
+    display: inline-block;
+    margin: 10px;
+    width: 25%;
+}
+
+.bus-name{
+    margin: 5px 10px 2.5px;
+}
+
+.bus-id{
+    margin: 2.5px 10px 20px;
+}
+
+.bus-type{
+    margin: 2.5px 10px;
+}
+
+.bus-food{
+    margin: 2.5px 10px;
+}
+
+.bus-2{
+    display: inline-block;
+    margin: 10px;
+    width: 45%;
+}
+
+.bus-start-time{
+    margin: 10px 40px 2.5px 10px;
+}
+
+.bus-travel-time{
+    margin: 10px 60px 2.5px 60px;
+}
+
+.bus-end-time{
+    margin: 10px 10px 2.5px 40px;
+    text-align: right;
+}
+
+.bus-start-date{
+    margin: 2.5px 90px 15px 10px;
+}
+
+.bus-end-date{
+    margin: 2.5px 10px 15px 90px;
+    text-align: right;
+}
+
+.bus-start-location{
+    margin: 15px 80px 10px 10px;
+}
+
+.bus-end-location{
+    margin: 15px 10px 10px 80px;
+    text-align: right;
+}
+
+.bus-3{
+    display: inline-block;
+    margin: 10px;
+    width: 20%;
+}
+
+.bus-rating{
+    margin: 2.5px 10px ;
+    display: block;
+}
+
+.bus-seats{
+    margin: 2.5px 10px ;
+    display: block;
+}
+
+.bus-price{
+    margin: 2.5px 10px ;
+    display: block;
+}
+
+.bus-amenities{
+    width: 14%;
+    margin: 2px 4px;
+}
+
+.bus-amenities:first-of-type{
+    margin-left: 10px;
 }

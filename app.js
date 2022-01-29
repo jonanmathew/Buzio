@@ -1,20 +1,28 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mysql = require('mysql2');
-const liveServer = require("live-server");
 
 const app = express();
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static("public"));
 
-const params = {
-    port: 3000
-};
 
-// app.get("/",function(req,res){
-//     res.sendFile(__dirname + "/index.html");
-// });
+app.get("/",function(req,res){
+    res.sendFile(__dirname + "/index.html");
+});
+
+app.get("/auth.html",function(req,res){
+    res.sendFile(__dirname + "/auth.html");
+});
+
+app.get("/admin.html",function(req,res){
+    res.sendFile(__dirname + "/admin.html");
+});
+
+app.get("/user.html",function(req,res){
+    res.sendFile(__dirname + "/user.html");
+});
 
 const con = mysql.createConnection({
     host: "localhost",
@@ -28,7 +36,7 @@ con.connect(function(err){
     console.log("Connected!");
 });
 
-app.post("/", function(req,res){
+app.post("/admin.html", function(req,res){
     var busNo = Number(req.body.busNo);
     var driverName = req.body.driverName;
     var startLocation = req.body.startLocation;
@@ -50,8 +58,7 @@ app.post("/", function(req,res){
         if (err) throw err;
         console.log(result);
     });
-    con.end();
 });
-liveServer.start(params);
-// app.listen(3000);
+
+app.listen(3000);
 
