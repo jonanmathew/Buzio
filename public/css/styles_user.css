@@ -24,12 +24,7 @@ h4{
     display: inline-block;
 }
 
-h5{
-    display: inline-block;
-    color: #777;
-}
-
-h6{
+h5,h6{
     display: inline-block;
     color: #777;
 }
@@ -87,17 +82,129 @@ h6{
     text-decoration: none;
 }
 
-.search-box{
-    position: fixed;
-    width: 300px;
+.content{
+    margin-bottom: 130px;
+}
+
+.items{
+    position: relative;
+    display: inline-block;
+}
+
+.item{
     background-color: rgba(172 ,206 ,239, 0.5);
+    width: 810px;
+    margin: 20px 30px 20px 50px;
+    border-radius: 10px;
+    padding: 10px;
+    border: 2px solid #FF7757;
+    transition: all .5s;
+    cursor: pointer;
+}
+
+.item:hover{
+    border: 2px solid #55c57a;
+    box-shadow: 0 0 30px #888888;
+}
+
+
+.error-msg{
+    display: inline-block;
     margin: 20px 50px;
+    padding: 30px;
+    font-size: 2.5rem;
+}
+
+.error-msg, .content{
+    margin-bottom: 190px;
+}
+
+.bus-1{
+    display: inline-block;
+    margin: 10px;
+    width: 25%;
+}
+
+.bus-name{
+    margin: 5px 10px 2.5px;
+}
+
+.bus-id{
+    margin: 2.5px 10px 20px;
+}
+
+.bus-type{
+    margin: 2.5px 10px;
+}
+
+.bus-2{
+    display: inline-block;
+    margin: 10px;
+    width: 45%;
+}
+
+.bus-start-time{
+    margin: 10px 45px 2.5px 10px;
+}
+
+.bus-travel-time{
+    margin: 10px 63px 2.5px 63px;
+}
+
+.bus-end-time{
+    margin: 10px 10px 2.5px 45px;
+    text-align: right;
+}
+
+.bus-start-date{
+    margin: 2.5px 60px 15px 10px;
+}
+
+.bus-end-date{
+    margin: 2.5px 10px 15px 60px;
+    text-align: right;
+}
+
+.bus-start-location{
+    margin: 15px 80px 10px 10px;
+}
+
+.bus-end-location{
+    margin: 15px 10px 10px 80px;
+    text-align: right;
+}
+
+.bus-3{
+    display: inline-block;
+    margin: 10px;
+    width: 20%;
+}
+
+.bus-misc{
+    margin: 2.5px 10px ;
+    display: block;
+}
+
+.bus-amenities{
+    width: 14%;
+    margin: 2px 4px;
+}
+
+.bus-amenities:first-of-type{
+    margin-left: 10px;
+}
+
+.search-box{
+    position: sticky;
+    float: right;
+    top: 20px;
+    width: 23%;
+    background-color: rgba(172 ,206 ,239, 0.5);
+    margin: 20px 50px 20px 30px;
     height: 450px;
     border-radius: 10px;
     padding: 30px;
-    left: 870px;
     border: 2px solid #FF7757;
-    transition: all .5s;
 }
 
 .search-details{
@@ -180,118 +287,52 @@ h6{
     animation-fill-mode: backwards;
 }
 
-.items{
+.footer{
+    background-color: #172432;
+    padding: 45px;
+    color: #fff;
+}
+
+.footer-sub{
     display: inline-block;
-    position: relative;
-    background-color: rgba(172 ,206 ,239, 0.5);
-    width: 65%;
-    margin: 20px 50px;
-    height: 150px;
-    border-radius: 10px;
-    padding: 10px;
-    border: 2px solid #FF7757;
-    transition: all .5s;
+    margin: 100px 50px;
+}
+
+.footer-primary{
+    font-size: 2.8rem;
+    margin: 10px 0px;
+}
+
+.footer-primary:hover{
+    color: #FF7757;
+}
+
+.footer-secondary{
+    font-size: 1.4rem;
+    margin: 5px 0px;
+    color: #fff;
+}
+
+.footer-secondary:hover{
+    color: #FF7757;
+}
+
+.footer-tertiary{
+    font-size: .8rem;
+    margin: 2.5px 0px;
+    display: block;
+}
+
+.footer-tertiary:hover{
+    cursor: pointer;
+    color: #FF7757;
+}
+
+.fab{
+    padding: 0px 2.5px;
     cursor: pointer;
 }
 
-.items:hover{
-    border: 2px solid #55c57a;
-    box-shadow: 0 0 30px #888888;
-}
-
-
-.error-msg{
-    width: 65%;
-    margin: 20px 50px;
-    padding: 30px;
-    font-size: 2.5rem;
-}
-
-.bus-1{
-    display: inline-block;
-    margin: 10px;
-    width: 25%;
-}
-
-.bus-name{
-    margin: 5px 10px 2.5px;
-}
-
-.bus-id{
-    margin: 2.5px 10px 20px;
-}
-
-.bus-type{
-    margin: 2.5px 10px;
-}
-
-.bus-food{
-    margin: 2.5px 10px;
-}
-
-.bus-2{
-    display: inline-block;
-    margin: 10px;
-    width: 45%;
-}
-
-.bus-start-time{
-    margin: 10px 45px 2.5px 10px;
-}
-
-.bus-travel-time{
-    margin: 10px 63px 2.5px 63px;
-}
-
-.bus-end-time{
-    margin: 10px 10px 2.5px 45px;
-    text-align: right;
-}
-
-.bus-start-date{
-    margin: 2.5px 60px 15px 10px;
-}
-
-.bus-end-date{
-    margin: 2.5px 10px 15px 60px;
-    text-align: right;
-}
-
-.bus-start-location{
-    margin: 15px 80px 10px 10px;
-}
-
-.bus-end-location{
-    margin: 15px 10px 10px 80px;
-    text-align: right;
-}
-
-.bus-3{
-    display: inline-block;
-    margin: 10px;
-    width: 20%;
-}
-
-.bus-rating{
-    margin: 2.5px 10px ;
-    display: block;
-}
-
-.bus-seats{
-    margin: 2.5px 10px ;
-    display: block;
-}
-
-.bus-price{
-    margin: 2.5px 10px ;
-    display: block;
-}
-
-.bus-amenities{
-    width: 14%;
-    margin: 2px 4px;
-}
-
-.bus-amenities:first-of-type{
-    margin-left: 10px;
+.fab:hover{
+    color: #FF7757;
 }

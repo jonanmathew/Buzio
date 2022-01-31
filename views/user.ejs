@@ -4,6 +4,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bus Management</title>
+    <script src="https://kit.fontawesome.com/efdfaf7046.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;600&family=Playfair+Display:wght@700&family=Rubik:wght@300;400&display=swap" rel="stylesheet">
@@ -11,7 +12,7 @@
     <link rel="stylesheet" href="css/styles_user.css">
 </head>
 <body>
-    <div class="nav-bar">
+    <header class="nav-bar">
         <img class="nav-logo" src="images/Buzio5.png" alt="logo">
         <a class="nav-title" href="/">Buzio</a>
         <a class="nav-tags">Home</a> 
@@ -20,204 +21,79 @@
         <a class="nav-tags">Blog</a> 
         <a class="nav-tags">Pricing</a>
         <a class="nav-admin" href="auth.html">Admin</a>
-    </div>
+    </header>
 
-    <div class="search-box">
-        <form action="/user.html" method="get">
-            <div class="search-details">
-                <div class="search-item">
-                    <input class="form-input" type="text" name="from" value="<%= from %>" required>
-                    <span class="placeholder">From</span>
-                </div>
-                <div class="search-item">
-                    <input class="form-input" type="text" name="to" value="<%= to %>" required>
-                    <span class="placeholder">To</span>
-                </div>
-                <div class="search-item">
-                    <input class="form-input" type="number" min="1" max="5" name="persons" value="<%= persons %>" required>
-                    <span class="placeholder">Person(s)</span>
-                </div>
-                <div class="search-item">
-                    <input class="form-input" type="date" name="date" value="<%= date %>" required>
-                    <span class="placeholder">Date</span>
-                </div>
+    <section class="content">  
+        <% if(result.length == 0){ %>
+            <div class="error-msg">
+                No Buses Available for Search Query!
             </div>
-            <div class="btn-search btn-animated">
-                <button class="btn-book" type="submit">Search</button>
-            </div>
-        </form>
-    </div>
-
-    <% if(result.length == 0){ %>
-        <div class="error-msg">
-            No Buses Available for Search Query!
-        </div>
-    <% } else{ %>  
-        <% for(let i=0;i<result.length;i++){ %> 
+        <% } else{ %>  
             <div class="items">
-                <div class="bus-1">
-                    <h4 class="bus-name">KSRTC Kerala</h4>
-                    <h5 class="bus-id">4310TVMKGD</h5>
-                    <h6 class="bus-type"><%= result[i].BusType %> Seater &nbsp;| &nbsp;<%= result[i].SleeperType %></h6>
-                    <h6 class="bus-food">Food Available</h6>
-                </div>
-                <div class="bus-2">
-                    <div>
-                        <h4 class="bus-start-time"><%= result[i].StartTime.slice(0,5) %></h4>
-                        <h6 class="bus-travel-time"><%= result[i].TravelTime.slice(0,5) %></h6>
-                        <h4 class="bus-end-time"><%= result[i].EndTime.slice(0,5) %></h4>
+            <% for(let i=0;i<result.length;i++){ %> 
+                <div class="item">
+                    <div class="bus-1">
+                        <h4 class="bus-name">KSRTC Kerala</h4>
+                        <h5 class="bus-id">4310TVMKGD</h5>
+                        <h6 class="bus-type"><%= result[i].BusType %> Seater &nbsp;| &nbsp;<%= result[i].SleeperType %></h6>
+                        <h6 class="bus-type">Food Available</h6>
                     </div>
-                    <div>
-                        <h5 class="bus-start-date"><%= String(result[i].StartDate).slice(0,15); %></h5>
-                        <h5 class="bus-end-date"><%= String(result[i].EndDate).slice(0,15) %></h5>
+                    <div class="bus-2">
+                        <div>
+                            <h4 class="bus-start-time"><%= result[i].StartTime.slice(0,5) %></h4>
+                            <h6 class="bus-travel-time"><%= result[i].TravelTime.slice(0,5) %></h6>
+                            <h4 class="bus-end-time"><%= result[i].EndTime.slice(0,5) %></h4>
+                        </div>
+                        <div>
+                            <h5 class="bus-start-date"><%= String(result[i].StartDate).slice(0,15); %></h5>
+                            <h5 class="bus-end-date"><%= String(result[i].EndDate).slice(0,15) %></h5>
+                        </div>
+                        <div>
+                            <h4 class="bus-start-location"><%= result[i].StartLocation %></h4>
+                            <h4 class="bus-end-location"><%= result[i].EndLocation %></h4>
+                        </div>
                     </div>
-                    <div>
-                        <h4 class="bus-start-location"><%= result[i].StartLocation %></h4>
-                        <h4 class="bus-end-location"><%= result[i].EndLocation %></h4>
+                    <div class="bus-3">
+                        <h5 class="bus-misc">4.3✰</h5>
+                        <h6 class="bus-misc">Seats Available: <%= result[i].Seats %></h6>
+                        <h4 class="bus-misc">₹569</h4>
+                        <img class="bus-amenities" src="images/wifi.png" alt="Wifi">
+                        <img class="bus-amenities" src="images/water-bottle.png" alt="Water Bottle">
+                        <img class="bus-amenities" src="images/charger.png" alt="Charger">
+                        <img class="bus-amenities" src="images/cinema.png" alt="Movie">
                     </div>
                 </div>
-                <div class="bus-3">
-                    <h5 class="bus-rating">4.3✰</h5>
-                    <h6 class="bus-seats">Seats Available: <%= result[i].Seats %></h6>
-                    <h4 class="bus-price">₹569</h4>
-                    <img class="bus-amenities" src="images/wifi.png" alt="Wifi">
-                    <img class="bus-amenities" src="images/water-bottle.png" alt="Water Bottle">
-                    <img class="bus-amenities" src="images/charger.png" alt="Charger">
-                    <img class="bus-amenities" src="images/cinema.png" alt="Movie">
-                </div>
+            <% } %> 
             </div>
         <% } %> 
-    <% } %> 
 
+        <div class="search-box">
+            <form action="/user.html" method="get">
+                <div class="search-details">
+                    <div class="search-item">
+                        <input class="form-input" type="text" name="from" value="<%= from %>" required>
+                        <span class="placeholder">From</span>
+                    </div>
+                    <div class="search-item">
+                        <input class="form-input" type="text" name="to" value="<%= to %>" required>
+                        <span class="placeholder">To</span>
+                    </div>
+                    <div class="search-item">
+                        <input class="form-input" type="number" min="1" max="5" name="persons" value="<%= persons %>" required>
+                        <span class="placeholder">Person(s)</span>
+                    </div>
+                    <div class="search-item">
+                        <input class="form-input" type="date" name="date" value="<%= date %>" required>
+                        <span class="placeholder">Date</span>
+                    </div>
+                </div>
+                <div class="btn-search btn-animated">
+                    <button class="btn-book" type="submit">Search</button>
+                </div>
+            </form>
+        </div>    
+    </section>
 
-
-    <!-- <div class="items">
-        <div class="bus-1">
-            <h4 class="bus-name">KSRTC Kerala</h4>
-            <h5 class="bus-id">4310TVMKGD</h5>
-            <h6 class="bus-type">AC Seater  |  Semi Sleeper</h6>
-            <h6 class="bus-food">Food Available</h6>
-        </div>
-        <div class="bus-2">
-            <div>
-                <h4 class="bus-start-time">19:00</h4>
-                <h6 class="bus-travel-time">12h 45m</h6>
-                <h4 class="bus-end-time">07:45</h4>
-            </div>
-            <div>
-                <h5 class="bus-start-date">2022-01-28</h5>
-                <h5 class="bus-end-date">2022-01-29</h5>
-            </div>
-            <div>
-                <h4 class="bus-start-location">Trivandrum</h4>
-                <h4 class="bus-end-location">Kasargod</h4>
-            </div>
-        </div>
-        <div class="bus-3">
-            <h5 class="bus-rating">4.3✰</h5>
-            <h6 class="bus-seats">Seats Available: 24</h6>
-            <h4 class="bus-price">₹569</h4>
-            <img class="bus-amenities" src="images/wifi.png" alt="Wifi">
-            <img class="bus-amenities" src="images/water-bottle.png" alt="Water Bottle">
-            <img class="bus-amenities" src="images/charger.png" alt="Charger">
-            <img class="bus-amenities" src="images/cinema.png" alt="Movie">
-        </div>
-    </div>
-    <div class="items">
-        <div class="bus-1">
-            <h4 class="bus-name">KSRTC Kerala</h4>
-            <h5 class="bus-id">4310TVMKGD</h5>
-            <h6 class="bus-type">AC Seater  |  Semi Sleeper</h6>
-            <h6 class="bus-food">Food Available</h6>
-        </div>
-        <div class="bus-2">
-            <div>
-                <h4 class="bus-start-time">19:00</h4>
-                <h6 class="bus-travel-time">12h 45m</h6>
-                <h4 class="bus-end-time">07:45</h4>
-            </div>
-            <div>
-                <h5 class="bus-start-date">2022-01-28</h5>
-                <h5 class="bus-end-date">2022-01-29</h5>
-            </div>
-            <div>
-                <h4 class="bus-start-location">Trivandrum</h4>
-                <h4 class="bus-end-location">Kasargod</h4>
-            </div>
-        </div>
-        <div class="bus-3">
-            <h5 class="bus-rating">4.3✰</h5>
-            <h6 class="bus-seats">Seats Available: 24</h6>
-            <h4 class="bus-price">₹569</h4>
-            <img class="bus-amenities" src="images/wifi.png" alt="Wifi">
-            <img class="bus-amenities" src="images/water-bottle.png" alt="Water Bottle">
-            <img class="bus-amenities" src="images/charger.png" alt="Charger">
-            <img class="bus-amenities" src="images/cinema.png" alt="Movie">
-        </div>
-    </div>
-    <div class="items">
-        <div class="bus-1">
-            <h4 class="bus-name">KSRTC Kerala</h4>
-            <h5 class="bus-id">4310TVMKGD</h5>
-            <h6 class="bus-type">AC Seater  |  Semi Sleeper</h6>
-            <h6 class="bus-food">Food Available</h6>
-        </div>
-        <div class="bus-2">
-            <div>
-                <h4 class="bus-start-time">19:00</h4>
-                <h6 class="bus-travel-time">12h 45m</h6>
-                <h4 class="bus-end-time">07:45</h4>
-            </div>
-            <div>
-                <h5 class="bus-start-date">2022-01-28</h5>
-                <h5 class="bus-end-date">2022-01-29</h5>
-            </div>
-            <div>
-                <h4 class="bus-start-location">Trivandrum</h4>
-                <h4 class="bus-end-location">Kasargod</h4>
-            </div>
-        </div>
-        <div class="bus-3">
-            <h5 class="bus-rating">4.3✰</h5>
-            <h6 class="bus-seats">Seats Available: 24</h6>
-            <h4 class="bus-price">₹569</h4>
-            <img class="bus-amenities" src="images/wifi.png" alt="Wifi">
-            <img class="bus-amenities" src="images/water-bottle.png" alt="Water Bottle">
-            <img class="bus-amenities" src="images/charger.png" alt="Charger">
-            <img class="bus-amenities" src="images/cinema.png" alt="Movie">
-        </div>
-    </div>
-    <div class="items">
-        <div class="bus-1">
-            <h4 class="bus-name">KSRTC Kerala</h4>
-            <h5 class="bus-id">4310TVMKGD</h5>
-            <h6 class="bus-type">AC Seater  |  Semi Sleeper</h6>
-            <h6 class="bus-food">Food Available</h6>
-        </div>
-        <div class="bus-2">
-            <div>
-                <h4 class="bus-start-time">19:00</h4>
-                <h6 class="bus-travel-time">12h 45m</h6>
-                <h4 class="bus-end-time">07:45</h4>
-            </div>
-            <div>
-                <h5 class="bus-start-date">2022-01-28</h5>
-                <h5 class="bus-end-date">2022-01-29</h5>
-            </div>
-            <div>
-                <h4 class="bus-start-location">Trivandrum</h4>
-                <h4 class="bus-end-location">Kasargod</h4>
-            </div>
-        </div>
-        <div class="bus-3">
-            <h5 class="bus-rating">4.3✰</h5>
-            <h6 class="bus-seats">Seats Available: 24</h6>
-            <h4 class="bus-price">₹569</h4>
-            <img class="bus-amenities" src="images/wifi.png" alt="Wifi">
-            <img class="bus-amenities" src="images/water-bottle.png" alt="Water Bottle">
-            <img class="bus-amenities" src="images/charger.png" alt="Charger">
-            <img class="bus-amenities" src="images/cinema.png" alt="Movie">
-        </div>
-    </div> -->
+    <%- include("footer") %> 
 </body>
 </html>

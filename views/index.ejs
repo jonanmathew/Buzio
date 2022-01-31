@@ -4,6 +4,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bus Management</title>
+    <script src="https://kit.fontawesome.com/efdfaf7046.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;600&family=Playfair+Display:wght@700&family=Rubik:wght@300;400&display=swap" rel="stylesheet">
@@ -12,8 +13,8 @@
 </head>
 <body>
     <img id="bg-img" src="images/landing.jpg" alt="Bus">
-
-    <div class="nav-bar">
+    <section class="content">
+      <div class="nav-bar">
         <img class="nav-logo" src="images/Buzio5.png" alt="logo">
         <a class="nav-title" href="/">Buzio</a>
         <a class="nav-tags">Home</a> 
@@ -22,47 +23,41 @@
         <a class="nav-tags">Blog</a> 
         <a class="nav-tags">Pricing</a>
         <a class="nav-admin" href="auth.html">Admin</a>
-    </div>
-
-    <div class="title-bar">
-        <h1>Book your Bus<br>tickets with us.</h1>
-        <h2>The best travel for your journey begins now.</h2>
-    </div>
-
-    <div class="search-bar">
-        <form action="/user.html" method="get">
-            <div class="btn-search">
-                <button class="btn-book" type="submit">Search</button>
-                <!-- <a class="btn-book" href="user.html">Search</a> -->
-                <!-- <img src="public/images/arrow.png" alt="Arrow_Right" class="arrow-right"> -->
-            </div>
-            <div class="search-details">
-                <div class="search-item">
-                    <input class="form-input" type="text" name="from" required>
-                    <span class="placeholder">From</span>
-                </div>
-                <div class="search-item search-item-2">
-                    <input class="form-input" type="text" name="to" required>
-                    <span class="placeholder">To</span>
-                </div>
-                <div class="search-item search-item-3">
-                    <input class="form-input" type="number" min="1" max="5" name="persons" required>
-                    <span class="placeholder">Person(s)</span>
-                </div>
-                <div class="search-item search-item-4">
-                    <input class="form-input" type="date" name="date" required>
-                    <span class="placeholder">Date</span>
-                </div>
-            </div>
-        </form>
-    </div>
-
-    <footer class="footer">
-      <div>
-        <h3>Buzio</h3>
-        <p>© Buzio 2022<br>All rights reserved.</p>
       </div>
-    </footer>
+
+      <div class="title-bar">
+          <h1>Book your Bus<br>tickets with us.</h1>
+          <h2>The best travel for your journey begins now.</h2>
+      </div>
+
+      <div class="search-bar">
+          <form action="/user.html" method="get">
+              <div class="btn-search">
+                  <button class="btn-book" type="submit">Search</button>
+              </div>
+              <div class="search-details">
+                  <div class="search-item">
+                      <input class="form-input" type="text" name="from" required>
+                      <span class="placeholder">From</span>
+                  </div>
+                  <div class="search-item search-item-2">
+                      <input class="form-input" type="text" name="to" required>
+                      <span class="placeholder">To</span>
+                  </div>
+                  <div class="search-item search-item-3">
+                      <input class="form-input" type="number" min="1" max="5" name="persons" required>
+                      <span class="placeholder">Person(s)</span>
+                  </div>
+                  <div class="search-item search-item-4">
+                      <input class="form-input" type="date" name="date" required>
+                      <span class="placeholder">Date</span>
+                  </div>
+              </div>
+          </form>
+      </div>
+    </section>
+
+    <%- include("footer") %> 
 
     <!-- <section class="section-tours" id="section-tours">
         <div class="u-center-text u-margin-bottom-big">

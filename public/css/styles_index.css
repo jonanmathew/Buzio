@@ -40,6 +40,14 @@ a{
     color: #fff;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active  {
+    box-shadow: 0 0 0 30px rgba(255, 255, 255, 0.7) inset !important;
+  -webkit-box-shadow: 0 0 0 30px rgba(255, 255, 255, 0.7) inset !important;
+}
+
 .nav-bar{
     position: relative;
     display: block;
@@ -101,7 +109,7 @@ a{
 .search-bar{
     position: relative;
     background-color: rgba(255, 255, 255, 0.7);
-    margin: 100 0 0 100;
+    margin: 100 0 70 100;
     height: 120px;
     box-shadow: 0 1.5rem 4rem rgb(0 0 0 /20%);
     border-bottom-left-radius: 10px;
@@ -127,27 +135,6 @@ a{
     color: #fff;
     cursor: pointer;
 }
-
-/* .btn-book{
-    border: none;
-    cursor: pointer;
-    position: absolute;
-    background-color: inherit;
-    color: #fff;
-    text-decoration: none;
-    font-size: 2rem;
-    text-align: center;
-    top: 40px;
-    left: 0px;
-    font-family: 'Rubik', sans-serif;
-} */
-
-/* .arrow-right{
-    position: absolute;
-    width: 40px;
-    top: 58px;
-    left: 100px;
-} */
 
 .search-details{
     position: relative;
@@ -197,9 +184,52 @@ a{
 
 }
 
-/* Pricing */
-
 .footer{
     background-color: #172432;
-    padding: 50px;
+    padding: 45px;
+    color: #fff;
 }
+
+.footer-sub{
+    display: inline-block;
+    margin: 100px 50px;
+}
+
+.footer-primary{
+    font-size: 2.8rem;
+    margin: 10px 0px;
+}
+
+.footer-primary:hover{
+    color: #FF7757;
+}
+
+.footer-secondary{
+    font-size: 1.4rem;
+    margin: 5px 0px;
+}
+
+.footer-secondary:hover{
+    color: #FF7757;
+}
+
+.footer-tertiary{
+    font-size: .8rem;
+    margin: 2.5px 0px;
+    display: block;
+}
+
+.footer-tertiary:hover{
+    cursor: pointer;
+    color: #FF7757;
+}
+
+.fab{
+    padding: 0px 2.5px;
+    cursor: pointer;
+}
+
+.fab:hover{
+    color: #FF7757;
+}
+
