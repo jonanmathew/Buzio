@@ -16,18 +16,24 @@
         <a class="nav-title" href="/">Buzio</a>
     </div>
 
+    <% if(validCredentials === false){ %>
+        <div class="invalid-box">
+            <p class="error-msg">Invalid username or password!<br>Please try again</p>
+        </div>
+    <% } %>  
+
     <div class="auth-box">
         <h3>Admin Authentication</h3>
-        <form action="#">
+        <form action="/auth.html" method="get">
             <div class="details">
-                <label>Username:     </label>
-                <input class="form-input" type="username" autofocus>
+                <label>Username: &nbsp;&nbsp;&nbsp;</label>
+                <input class="form-input" type="username" name="username" required autofocus>
             </div>
             <div class="details">
-                <label>Password:     </label>
-                <input class="form-input" type="password">
+                <label>Password: &nbsp;&nbsp;&nbsp;</label>
+                <input class="form-input" type="password" name="password" required>
             </div>
-            <a class="btn-login" href="admin.html">Login</a>
+            <button class="btn-login" type="submit">Login</button>
         </form>
     </div>
 </body>

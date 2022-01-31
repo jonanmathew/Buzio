@@ -255,16 +255,11 @@ h5,h6{
     font-size: 1rem;
 }
 
-.btn-search{  
+.btn-search{
     position: relative;      
-    padding: 20px 30px;
+    padding: 20px 75px;
     border-radius: 10px;
-    background-color: #FF7757;  
     text-align: center;
-    transition: all 0.2s;
-}
-
-.btn-book{
     font-size: 1.5rem;
     font-family: 'Josefin Sans', sans-serif;
     font-weight: 700;
@@ -272,19 +267,12 @@ h5,h6{
     border: none;
     color: #fff;
     cursor: pointer;
+    transition: all 0.3s;
 }
 
-.btn-animated {
-    animation-duration: 0.5s;
-    animation-timing-function: ease-out;
-    animation-delay: 0.75s;
-    animation-iteration-count: 1;
-    animation-direction: normal;
-    animation-fill-mode: backwards;
-    animation-play-state: running;
-    animation-name: moveInBottom;
-    -webkit-animation-fill-mode: backwards;
-    animation-fill-mode: backwards;
+.btn-search:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 1rem 20px rgb(0 0 0 / 20%);
 }
 
 .footer{

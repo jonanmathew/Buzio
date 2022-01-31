@@ -4,6 +4,9 @@ const mysql = require('mysql2');
 
 const app = express();
 
+let validCredentials = true;
+let firstTime = true;
+
 app.set("view engine","ejs");
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static("public"));
@@ -25,7 +28,27 @@ app.get("/",function(req,res){
 });
 
 app.get("/auth.html",function(req,res){
-    res.render("auth",{});
+    let user = "admin";
+    let pass = "root";
+    let username = req.query.username;
+    let password = req.query.password;
+    if(firstTime){
+        console.log("1");
+        firstTime = false;
+        res.render("auth",{validCredentials: validCredentials});
+    }else if(username === user && password === pass){
+        console.log("2");
+        validCredentials = true;
+        firstTime = true;
+        res.redirect("/admin.html");
+    } else{
+        console.log("3");
+        validCredentials = false;
+        firstTime = false;
+        res.render("auth",{validCredentials: validCredentials});
+    }
+    
+    
 });
 
 app.get("/admin.html",function(req,res){
@@ -44,10 +67,6 @@ app.get("/user.html",function(req,res){
         if (err) throw err;
         res.render("user",{from: from, to: to, persons: persons, date: date, result: result});
     });
-});
-
-app.post("/user.html", function(req,res){
-    
 });
 
 app.post("/admin.html", function(req,res){
