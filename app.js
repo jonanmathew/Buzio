@@ -52,7 +52,22 @@ app.get("/auth.html",function(req,res){
 });
 
 app.get("/admin.html",function(req,res){
-    res.render("admin",{});
+    let from = req.query.from;
+    let to = req.query.to;
+    let persons = req.query.persons;
+    let date = req.query.date;
+    let values = [from, to, Number(persons), date];
+    let sql;
+    if(from == null){
+        sql = "SELECT * FROM BusDetails";
+    } else{
+        sql = "SELECT * FROM BusDetails WHERE StartLocation = ? AND EndLocation = ? AND Seats >= ? AND StartDate = ?";
+    }
+    con.query(sql, values, function(err, result) {
+        if (err) throw err;
+        console.log(result);
+        res.render("admin",{from: from, to: to, persons: persons, date: date, result: result});
+    });
 });
 
 app.get("/user.html",function(req,res){
@@ -61,30 +76,33 @@ app.get("/user.html",function(req,res){
     let persons = req.query.persons;
     let date = req.query.date;
     let values = [from, to, Number(persons), date];
-    console.log(values);
     let sql = "SELECT * FROM BusDetails WHERE StartLocation = ? AND EndLocation = ? AND Seats >= ? AND StartDate = ?";
     con.query(sql, values, function(err, result) {
         if (err) throw err;
+        console.log(result);
         res.render("user",{from: from, to: to, persons: persons, date: date, result: result});
     });
 });
 
 app.post("/admin.html", function(req,res){
-    let busNo = Number(req.body.busNo);
+    let busNo = req.body.busNo;
+    let busName = req.body.busName;
     let driverName = req.body.driverName;
     let startLocation = req.body.startLocation;
     let endLocation = req.body.endLocation;
     let startTime = req.body.startTime;
     let endTime = req.body.endTime;
-    let travelTime = startTime;
+    let travelTime = "10:08";
     let startDate = req.body.startDate;
     let endDate = req.body.endDate;
     let seats = Number(req.body.seats);
     let busType = req.body.busType;
     let sleeperType = req.body.sleeperType;
     let foodAvailable = req.body.foodAvailable;
+    let price = Number(req.body.price);
+    let rating = Number(req.body.rating);
     let sql = "INSERT INTO BusDetails VALUES (?)";
-    let values = [busNo, driverName, startLocation, endLocation, startTime, endTime, travelTime, startDate, endDate, seats,busType, sleeperType, foodAvailable];
+    let values = [busNo,busName, driverName, startLocation, endLocation, startTime, endTime, travelTime, startDate, endDate, seats,busType, sleeperType, foodAvailable, price, rating];
     console.log(values);
     console.log(startDate, endDate);
     con.query(sql, [values], function(err, result){

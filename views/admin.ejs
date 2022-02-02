@@ -14,38 +14,92 @@
     <div class="nav-bar">
         <img class="nav-logo" src="images/Buzio5.png" alt="logo">
         <a class="nav-title" href="/">Buzio</a>
-        <a class="nav-add" href="#popup">Add+</a>
+        <a class="nav-add" href="#popup-create">Add+</a>
     </div>
-    <div class="menu-bar" id="main-page">
-        <div class="search-details">
-            <div class="search-item">
-                <input class="form-input" type="text" required>
-                <span class="placeholder">From</span>
+    <div class="search-bar" id="main-page">
+        <form action="/admin.html" method="get">
+            <div class="search-details">
+                <div class="search-item">
+                    <input class="form-input" type="text" name="from" value="<%= from %>" required>
+                    <span class="placeholder">From</span>
+                </div>
+                <div class="search-item">
+                    <input class="form-input" type="text" name="to" value="<%= to %>" required>
+                    <span class="placeholder">To</span>
+                </div>
+                <div class="search-item">
+                    <input class="form-input" type="number" min="1" max="5" name="persons" value="<%= persons %>" required>
+                    <span class="placeholder">Person(s)</span>
+                </div>
+                <div class="search-item">
+                    <input class="form-input" type="date" name="date" value="<%= date %>" required>
+                    <span class="placeholder">Date</span>
+                </div>
             </div>
-            <div class="search-item search-item-2">
-                <input class="form-input" type="text" required>
-                <span class="placeholder">To</span>
-            </div>
-            <div class="search-item search-item-3">
-                <input class="form-input" type="number" min="1" max="5" required>
-                <span class="placeholder">Seats Available</span>
-            </div>
-            <div class="search-item search-item-4">
-                <input class="form-input" type="date" placeholder="" required>
-                <span class="placeholder">Date</span>
-            </div>
+            <button class="btn-search" type="submit">Search</button>
+        </form>
+    </div>
+
+    <% if(result.length == 0){ %>
+        <div class="error-msg">
+            No Buses Available for Search Query!
         </div>
-        <a class="search-btn" href="">Search</a>
-    </div>
-    <div id="popup" class="popup">
+    <% } else{ %>  
+        <div class="items">
+        <% for(let i=0;i<result.length;i++){ %> 
+            <div class="item" onclick="location.href='#popup-update'">
+                <div class="bus-1">
+                    <h4 class="bus-name"><%= result[i].BusName %> </h4>
+                    <h5 class="bus-id"><%= result[i].BusNo %></h5>
+                    <h6 class="bus-type"><%= result[i].BusType %> Seater &nbsp;| &nbsp;<%= result[i].SleeperType %></h6>
+                    <% if(result[i].FoodAvailable === "Yes"){ %>
+                        <h6 class="bus-type">Food Available</h6>
+                    <% } else{ %>
+                        <h6 class="bus-type">Food Unavailable</h6>  
+                    <% } %> 
+                </div>
+                <div class="bus-2">
+                    <div>
+                        <h4 class="bus-start-time"><%= result[i].StartTime.slice(0,5) %></h4>
+                        <h6 class="bus-travel-time"><%= result[i].TravelTime.slice(0,5) %></h6>
+                        <h4 class="bus-end-time"><%= result[i].EndTime.slice(0,5) %></h4>
+                    </div>
+                    <div>
+                        <h5 class="bus-start-date"><%= String(result[i].StartDate).slice(0,15); %></h5>
+                        <h5 class="bus-end-date"><%= String(result[i].EndDate).slice(0,15) %></h5>
+                    </div>
+                    <div>
+                        <h4 class="bus-start-location"><%= result[i].StartLocation %></h4>
+                        <h4 class="bus-end-location"><%= result[i].EndLocation %></h4>
+                    </div>
+                </div>
+                <div class="bus-3">
+                    <h5 class="bus-misc"><%= result[i].Rating %>✰</h5>
+                    <h6 class="bus-misc">Seats Available: <%= result[i].Seats %></h6>
+                    <h4 class="bus-misc">₹<%= result[i].Price %></h4>
+                    <img class="bus-amenities" src="images/wifi.png" alt="Wifi">
+                    <img class="bus-amenities" src="images/water-bottle.png" alt="Water Bottle">
+                    <img class="bus-amenities" src="images/charger.png" alt="Charger">
+                    <img class="bus-amenities" src="images/cinema.png" alt="Movie">
+                </div>
+            </div>
+        <% } %> 
+        </div>
+    <% } %> 
+    
+    <div id="popup-create" class="popup">
         <div class="popup-content">
             <a class="popup-close" href="#main-page">x</a>
             <form action="/admin.html" method="post">
                 <div class="add-details">
                     <h3>Add New Bus</h3>
                     <div class="add-item">
-                        <input name="busNo" class="form-input" type="number" min="1" required>
-                        <span class="placeholder">Bus No.</span>
+                        <input name="busNo" class="form-input" type="text" style="text-transform: uppercase;" required>
+                        <span class="placeholder">Bus No</span>
+                    </div>
+                    <div class="add-item">
+                        <input name="busName" class="form-input" type="text" required>
+                        <span class="placeholder">Bus Name</span>
                     </div>
                     <div class="add-item">
                         <input name="driverName" class="form-input" type="text" required>
@@ -91,9 +145,87 @@
                         <input name="foodAvailable" class="form-input" type="text" required>
                         <span class="placeholder">Food Available</span>
                     </div>
-                    <div class="btn-add btn-animated">
-                        <button class="btn-create"  type="submit">Create</button>
+                    <div class="add-item">
+                        <input name="price" class="form-input" type="number" min="1" required>
+                        <span class="placeholder">Price</span>
                     </div>
+                    <div class="add-item">
+                        <input name="rating" class="form-input" type="number" step="0.1" required>
+                        <span class="placeholder">Rating</span>
+                    </div>
+                    <button class="btn-create"  type="submit">Create</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="popup-update" class="popup">
+        <div class="popup-content">
+            <a class="popup-close" href="#main-page">x</a>
+            <form action="/admin.html" method="post">
+                <div class="add-details">
+                    <h3>Update Bus Details</h3>
+                    <div class="add-item">
+                        <input name="busNo" class="form-input" type="text" style="text-transform: uppercase;" value="<%= "MBT19CS069" %> " required>
+                        <span class="placeholder">Bus No</span>
+                    </div>
+                    <div class="add-item">
+                        <input name="busName" class="form-input" type="text" required>
+                        <span class="placeholder">Bus Name</span>
+                    </div>
+                    <div class="add-item">
+                        <input name="driverName" class="form-input" type="text" required>
+                        <span class="placeholder">Driver Name</span>
+                    </div>
+                    <div class="add-item">
+                        <input name="startLocation" class="form-input" type="text" required>
+                        <span class="placeholder">Start Location</span>
+                    </div>
+                    <div class="add-item">
+                        <input name="endLocation" class="form-input" type="text" required>
+                        <span class="placeholder">End Location</span>
+                    </div>
+                    <div class="add-item">
+                        <input name="startTime" class="form-input" type="time" required>
+                        <span class="placeholder">Start Time</span>
+                    </div>
+                    <div class="add-item">
+                        <input name="endTime" class="form-input" type="time" required>
+                        <span class="placeholder">End Time</span>
+                    </div>
+                    <div class="add-item">
+                        <input name="startDate" class="form-input" type="date" required>
+                        <span class="placeholder">Start Date</span>
+                    </div>
+                    <div class="add-item">
+                        <input name="endDate" class="form-input" type="date" required>
+                        <span class="placeholder">End Date</span>
+                    </div>
+                    <div class="add-item">
+                        <input name="seats" class="form-input" type="number" min="1" required>
+                        <span class="placeholder">Seats</span>
+                    </div>
+                    <div class="add-item">
+                        <input name="busType" class="form-input" type="text" required>
+                        <span class="placeholder">Bus Type</span>
+                    </div>
+                    <div class="add-item">
+                        <input name="sleeperType" class="form-input" type="text" required>
+                        <span class="placeholder">Sleeper Type</span>
+                    </div>
+                    <div class="add-item">
+                        <input name="foodAvailable" class="form-input" type="text" required>
+                        <span class="placeholder">Food Available</span>
+                    </div>
+                    <div class="add-item">
+                        <input name="price" class="form-input" type="number" min="1" required>
+                        <span class="placeholder">Price</span>
+                    </div>
+                    <div class="add-item">
+                        <input name="rating" class="form-input" type="number" step="0.1" required>
+                        <span class="placeholder">Rating</span>
+                    </div>
+                    <button class="btn-create"  type="submit">Create</button>
                 </div>
             </form>
         </div>

@@ -89,13 +89,16 @@ input:-webkit-autofill:active  {
 .nav-admin{
     left: 570px;
     padding: 5px;
-    color: #FF7757;
+    color: #fff;
+    transition: all 0.2s;
+    display: inline-block;
 }
 
 .nav-admin:hover{
-    background-color: #fff;
-    border-radius: 10px;
+    background-color: #FF7757;
     text-decoration: none;
+    transform: translateY(-3px);
+    box-shadow: 0 1rem 2rem rgb(0 0 0 / 15%);
 }
 
 .title-bar{

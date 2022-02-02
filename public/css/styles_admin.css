@@ -17,10 +17,17 @@ body{
 h3{
     text-align: center;
     margin-bottom: 40px;
-
 }
 
-/* rgba(172 ,206 ,239, 0.5) */
+h4{
+    display: inline-block;
+}
+
+h5,h6{
+    display: inline-block;
+    color: #777;
+}
+
 a{
     text-decoration: none;
     position: relative;
@@ -31,8 +38,8 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active  {
-    box-shadow: 0 0 0 30px rgba(255, 255, 255, 0.7) inset !important;
-  -webkit-box-shadow: 0 0 0 30px rgba(255, 255, 255, 0.7) inset !important;
+    box-shadow: 0 0 0 30px rgba(172 ,206 ,239, 0.5) inset !important;
+  -webkit-box-shadow: 0 0 0 30px rgba(172 ,206 ,239, 0.5) inset !important;
 }
 
 .nav-bar{
@@ -112,11 +119,12 @@ input:-webkit-autofill:active  {
 
 }
 
-.menu-bar{
+.search-bar{
     position: relative;
     width: 90%;
     background-color: rgba(172 ,206 ,239, 0.5);
     box-shadow: 0 0 30px #888888;
+    border: 2px solid #FF7757;
     margin: 20px auto;
     height: 100px;
     border-radius: 10px;
@@ -135,9 +143,8 @@ input:-webkit-autofill:active  {
     display: inline-block;
 }
 
-.search-btn, .search-btn:link, .search-btn:visited {
+.btn-search, .btn-search:link, .btn-search:visited {
     padding: 10px 40px;
-    margin-left: 10px;
     display: inline-block;
     border-radius: 5px;
     transition: all 0.3s;
@@ -147,12 +154,122 @@ input:-webkit-autofill:active  {
     font-family: 'Josefin Sans', sans-serif;
     font-weight: 700;
     font-size: 1.5rem;
+    cursor: pointer;
 }
 
-.search-btn:hover {
+.btn-search:hover {
     transform: translateY(-3px);
     box-shadow: 0 1rem 20px rgb(0 0 0 / 20%);
 }
+
+/* Bus Details */
+
+
+.items{
+    position: relative;
+    display: inline-block;
+}
+
+.item{
+    background-color: rgba(172 ,206 ,239, 0.5);
+    width: 810px;
+    margin: 20px 30px 20px 65px;
+    border-radius: 10px;
+    padding: 10px;
+    border: 2px solid #FF7757;
+    transition: all .5s;
+    cursor: pointer;
+}
+
+.item:hover{
+    border: 2px solid #55c57a;
+    box-shadow: 0 0 30px #888888;
+}
+
+
+.error-msg{
+    display: inline-block;
+    margin: 20px 50px;
+    padding: 30px;
+    font-size: 2.5rem;
+}
+
+.bus-1{
+    display: inline-block;
+    margin: 10px;
+    width: 25%;
+}
+
+.bus-name{
+    margin: 5px 10px 2.5px;
+}
+
+.bus-id{
+    margin: 2.5px 10px 20px;
+}
+
+.bus-type{
+    margin: 2.5px 10px;
+}
+
+.bus-2{
+    display: inline-block;
+    margin: 10px;
+    width: 45%;
+}
+
+.bus-start-time{
+    margin: 10px 45px 2.5px 10px;
+}
+
+.bus-travel-time{
+    margin: 10px 60px 2.5px 60px;
+}
+
+.bus-end-time{
+    margin: 10px 10px 2.5px 45px;
+    text-align: right;
+}
+
+.bus-start-date{
+    margin: 2.5px 60px 15px 10px;
+}
+
+.bus-end-date{
+    margin: 2.5px 10px 15px 60px;
+    text-align: right;
+}
+
+.bus-start-location{
+    margin: 15px 70px 10px 10px;
+}
+
+.bus-end-location{
+    margin: 15px 10px 10px 70px;
+    text-align: right;
+}
+
+.bus-3{
+    display: inline-block;
+    margin: 10px;
+    width: 20%;
+}
+
+.bus-misc{
+    margin: 2.5px 10px ;
+    display: block;
+}
+
+.bus-amenities{
+    width: 14%;
+    margin: 2px 4px;
+}
+
+.bus-amenities:first-of-type{
+    margin-left: 10px;
+}
+
+/* Popup */
 
 .popup{
     visibility: hidden;
@@ -183,7 +300,7 @@ input:-webkit-autofill:active  {
     
 }
 
-#popup:target, .popup-content{
+.popup:target, .popup-content{
     visibility: visible;
     opacity: 1;
     z-index: 100;
@@ -218,36 +335,27 @@ input:-webkit-autofill:active  {
     position: relative;
 }
 
-.btn-add{  
+.btn-create{
     display: block;
     position: relative;
     width: 15%;
     margin: 25px auto 0px;      
-    padding: 20px 30px;
-    border-radius: 10px;
-    background-color: #FF7757;  
+    padding: 20px 30px; 
     text-align: center;
     transition: all 0.2s;
-}
-
-.btn-create{
     font-size: 1.5rem;
     font-family: 'Josefin Sans', sans-serif;
     font-weight: 700;
+    color: #fff;
     background-color: #FF7757;
     border: none;
     cursor: pointer;
+    transition: all 0.3s;
 }
 
-.btn-animated {
-    animation-duration: 0.5s;
-    animation-timing-function: ease-out;
-    animation-delay: 0.75s;
-    animation-iteration-count: 1;
-    animation-direction: normal;
-    animation-fill-mode: backwards;
-    animation-play-state: running;
-    animation-name: moveInBottom;
-    -webkit-animation-fill-mode: backwards;
-    animation-fill-mode: backwards;
+.btn-create:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 1rem 20px rgb(0 0 0 / 20%);
 }
+
+

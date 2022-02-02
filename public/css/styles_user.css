@@ -1,3 +1,5 @@
+/* General */
+
 *,*::after,*::before{
     box-sizing: border-box;
     margin: 0;
@@ -28,6 +30,8 @@ h5,h6{
     display: inline-block;
     color: #777;
 }
+
+/* Navigation Bar*/
 
 .nav-bar{
     background-image: linear-gradient(to right, rgba(19,41,104), rgba(94,144,204));
@@ -73,17 +77,22 @@ h5,h6{
 .nav-admin{
     left: 570px;
     padding: 5px;
-    color: #000;
+    color: #fff;
+    transition: all 0.2s;
+    display: inline-block;
 }
 
 .nav-admin:hover{
     background-color: #FF7757;
-    border-radius: 10px;
     text-decoration: none;
+    transform: translateY(-3px);
+    box-shadow: 0 1rem 2rem rgb(0 0 0 / 15%);
 }
 
+/* Bus Details */
+
 .content{
-    margin-bottom: 130px;
+    padding-bottom: 350px;
 }
 
 .items{
@@ -115,10 +124,6 @@ h5,h6{
     font-size: 2.5rem;
 }
 
-.error-msg, .content{
-    margin-bottom: 190px;
-}
-
 .bus-1{
     display: inline-block;
     margin: 10px;
@@ -148,7 +153,7 @@ h5,h6{
 }
 
 .bus-travel-time{
-    margin: 10px 63px 2.5px 63px;
+    margin: 10px 60px 2.5px 60px;
 }
 
 .bus-end-time{
@@ -166,11 +171,11 @@ h5,h6{
 }
 
 .bus-start-location{
-    margin: 15px 80px 10px 10px;
+    margin: 15px 70px 10px 10px;
 }
 
 .bus-end-location{
-    margin: 15px 10px 10px 80px;
+    margin: 15px 10px 10px 70px;
     text-align: right;
 }
 
@@ -194,7 +199,9 @@ h5,h6{
     margin-left: 10px;
 }
 
-.search-box{
+/* Search Bar */
+
+.search-bar{
     position: sticky;
     float: right;
     top: 20px;
@@ -274,6 +281,8 @@ h5,h6{
     transform: translateY(-3px);
     box-shadow: 0 1rem 20px rgb(0 0 0 / 20%);
 }
+
+/* Footer */
 
 .footer{
     background-color: #172432;
