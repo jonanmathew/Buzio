@@ -31,41 +31,46 @@
         <% } else{ %>  
             <div class="items">
             <% for(let i=0;i<result.length;i++){ %> 
-                <div class="item" onclick="location.href='admin.html'">
-                    <div class="bus-1">
-                        <h4 class="bus-name"><%= result[i].BusName %> </h4>
-                        <h5 class="bus-id"><%= result[i].BusNo %></h5>
-                        <h6 class="bus-type"><%= result[i].BusType %> Seater &nbsp;| &nbsp;<%= result[i].SleeperType %></h6>
-                        <% if(result[i].FoodAvailable === "Yes"){ %>
-                            <h6 class="bus-type">Food Available</h6>
-                        <% } else{ %>
-                            <h6 class="bus-type">Food Unavailable</h6>  
-                        <% } %> 
-                    </div>
-                    <div class="bus-2">
-                        <div>
-                            <h4 class="bus-start-time"><%= result[i].StartTime.slice(0,5) %></h4>
-                            <h6 class="bus-travel-time"><%= result[i].TravelTime.slice(0,5) %></h6>
-                            <h4 class="bus-end-time"><%= result[i].EndTime.slice(0,5) %></h4>
+                <div class="item" >
+                    <form action="/booking.html">
+                        <div class="bus-1">
+                            <h4 class="bus-name"><%= result[i].BusName %> </h4>
+                            <h5 class="bus-id"><%= result[i].BusId %></h5>
+                            <input class="hidden-bus-details" type="text" name="id" value="<%= result[i].BusId %>" readonly>
+                            <input class="hidden-bus-details" type="number" name="personsNo" value="<%= persons %>" readonly>
+                            <h6 class="bus-type"><%= result[i].BusType %> Seater &nbsp;| &nbsp;<%= result[i].SleeperType %></h6>
+                            <% if(result[i].FoodAvailable === "Yes"){ %>
+                                <h6 class="bus-type">Food Available</h6>
+                            <% } else{ %>
+                                <h6 class="bus-type">Food Unavailable</h6>  
+                            <% } %> 
                         </div>
-                        <div>
-                            <h5 class="bus-start-date"><%= String(result[i].StartDate).slice(0,15); %></h5>
-                            <h5 class="bus-end-date"><%= String(result[i].EndDate).slice(0,15) %></h5>
+                        <div class="bus-2">
+                            <div>
+                                <h4 class="bus-start-time"><%= result[i].StartTime.slice(0,5) %></h4>
+                                <h6 class="bus-travel-time"><%= result[i].TravelTime.slice(0,5) %></h6>
+                                <h4 class="bus-end-time"><%= result[i].EndTime.slice(0,5) %></h4>
+                            </div>
+                            <div>
+                                <h5 class="bus-start-date"><%= String(result[i].StartDate).slice(0,15); %></h5>
+                                <h5 class="bus-end-date"><%= String(result[i].EndDate).slice(0,15) %></h5>
+                            </div>
+                            <div>
+                                <h4 class="bus-start-location"><%= result[i].StartLocation %></h4>
+                                <h4 class="bus-end-location"><%= result[i].EndLocation %></h4>
+                            </div>
                         </div>
-                        <div>
-                            <h4 class="bus-start-location"><%= result[i].StartLocation %></h4>
-                            <h4 class="bus-end-location"><%= result[i].EndLocation %></h4>
+                        <div class="bus-3">
+                            <h5 class="bus-misc"><%= result[i].Rating %>✰</h5>
+                            <h6 class="bus-misc">Seats Available: <%= result[i].SeatsAvailable %>/<%= result[i].Seats %></h6>
+                            <h4 class="bus-misc">₹<%= result[i].Price %></h4>
+                            <img class="bus-amenities" src="images/wifi.png" alt="Wifi">
+                            <img class="bus-amenities" src="images/water-bottle.png" alt="Water Bottle">
+                            <img class="bus-amenities" src="images/charger.png" alt="Charger">
+                            <img class="bus-amenities" src="images/cinema.png" alt="Movie">
                         </div>
-                    </div>
-                    <div class="bus-3">
-                        <h5 class="bus-misc"><%= result[i].Rating %>✰</h5>
-                        <h6 class="bus-misc">Seats Available: <%= result[i].Seats %></h6>
-                        <h4 class="bus-misc">₹<%= result[i].Price %></h4>
-                        <img class="bus-amenities" src="images/wifi.png" alt="Wifi">
-                        <img class="bus-amenities" src="images/water-bottle.png" alt="Water Bottle">
-                        <img class="bus-amenities" src="images/charger.png" alt="Charger">
-                        <img class="bus-amenities" src="images/cinema.png" alt="Movie">
-                    </div>
+                        <button class="btn-book" type="submit"></button>
+                    </form>
                 </div>
             <% } %> 
             </div>

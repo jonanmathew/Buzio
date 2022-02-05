@@ -50,7 +50,7 @@
             <div class="item" onclick="location.href='#popup-update'">
                 <div class="bus-1">
                     <h4 class="bus-name"><%= result[i].BusName %> </h4>
-                    <h5 class="bus-id"><%= result[i].BusNo %></h5>
+                    <h5 class="bus-id"><%= result[i].BusId %></h5>
                     <h6 class="bus-type"><%= result[i].BusType %> Seater &nbsp;| &nbsp;<%= result[i].SleeperType %></h6>
                     <% if(result[i].FoodAvailable === "Yes"){ %>
                         <h6 class="bus-type">Food Available</h6>
@@ -75,7 +75,7 @@
                 </div>
                 <div class="bus-3">
                     <h5 class="bus-misc"><%= result[i].Rating %>✰</h5>
-                    <h6 class="bus-misc">Seats Available: <%= result[i].Seats %></h6>
+                    <h6 class="bus-misc">Seats Available: <%= result[i].SeatsAvailable %>/<%= result[i].Seats %></h6>
                     <h4 class="bus-misc">₹<%= result[i].Price %></h4>
                     <img class="bus-amenities" src="images/wifi.png" alt="Wifi">
                     <img class="bus-amenities" src="images/water-bottle.png" alt="Water Bottle">
@@ -94,7 +94,7 @@
                 <div class="add-details">
                     <h3>Add New Bus</h3>
                     <div class="add-item">
-                        <input name="busNo" class="form-input" type="text" style="text-transform: uppercase;" required>
+                        <input name="busId" class="form-input" type="text" style="text-transform: uppercase;" required>
                         <span class="placeholder">Bus No</span>
                     </div>
                     <div class="add-item">
@@ -166,7 +166,7 @@
                 <div class="add-details">
                     <h3>Update Bus Details</h3>
                     <div class="add-item">
-                        <input name="busNo" class="form-input" type="text" style="text-transform: uppercase;" value="<%= "MBT19CS069" %> " required>
+                        <input name="busId" class="form-input" type="text" style="text-transform: uppercase;" value="<%= "MBT19CS069" %> " required>
                         <span class="placeholder">Bus No</span>
                     </div>
                     <div class="add-item">
@@ -206,16 +206,29 @@
                         <span class="placeholder">Seats</span>
                     </div>
                     <div class="add-item">
-                        <input name="busType" class="form-input" type="text" required>
+                        <input name="busType" class="form-input" type="text" list="bus-type" required>
                         <span class="placeholder">Bus Type</span>
+                        <datalist id="bus-type">
+                            <option value="AC"></option>
+                            <option value="Non AC"></option>
+                        </datalist>
                     </div>
                     <div class="add-item">
-                        <input name="sleeperType" class="form-input" type="text" required>
+                        <input name="sleeperType" class="form-input" type="text" list="sleeper-type" required>
                         <span class="placeholder">Sleeper Type</span>
+                        <datalist id="sleeper-type">
+                            <option value="Sleeper"></option>
+                            <option value="Semi Sleeper"></option>
+                            <option value="Non Sleeper"></option>
+                        </datalist>
                     </div>
                     <div class="add-item">
-                        <input name="foodAvailable" class="form-input" type="text" required>
+                        <input name="foodAvailable" class="form-input" type="text" list="food-availability" required>
                         <span class="placeholder">Food Available</span>
+                        <datalist id="food-availablity">
+                            <option value="Yes"></option>
+                            <option value="No"></option>
+                        </datalist>
                     </div>
                     <div class="add-item">
                         <input name="price" class="form-input" type="number" min="1" required>

@@ -30,8 +30,8 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active  {
-    box-shadow: 0 0 0 30px rgba(255, 255, 255, 0.7) inset !important;
-  -webkit-box-shadow: 0 0 0 30px rgba(255, 255, 255, 0.7) inset !important;
+    box-shadow: 0 0 0 30px rgba(172 ,206 ,239, 0.5) inset !important;
+  -webkit-box-shadow: 0 0 0 30px rgba(172 ,206 ,239, 0.5) inset !important;
 }
 
 .nav-bar{
@@ -105,6 +105,10 @@ input:-webkit-autofill:active  {
     font-size: 1rem;
     font-family: 'Rubik', sans-serif;
     font-weight: 300;
+}
+
+.form-input:valid{
+    border-bottom: 2px solid #55c57a;
 }
 
 .btn-login{

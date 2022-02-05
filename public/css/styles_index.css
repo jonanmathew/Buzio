@@ -14,7 +14,7 @@ body{
 
 #bg-img{
     position: absolute;
-    height: 648px;
+    height: 650px;
     width: 1263px;
 }
 
@@ -161,6 +161,10 @@ input:-webkit-autofill:active  {
     font-family: 'Rubik', sans-serif;
 }
 
+.form-input:valid{
+    border-bottom: 2px solid #55c57a;
+}
+
 .placeholder{
     position: absolute;
     font-family: 'Josefin Sans', sans-serif;
@@ -168,10 +172,7 @@ input:-webkit-autofill:active  {
     left: 30px;
     top: 20px;
     color: #000;
-    transition: 
-        top 0.3s ease,
-        font-size 0.3s ease,
-        color 0.3s ease;
+    transition: all 0.3s ease;
 
 }
 

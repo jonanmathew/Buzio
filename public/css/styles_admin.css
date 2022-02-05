@@ -34,10 +34,18 @@ a{
     color: #fff;
 }
 
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active  {
+input + .add-item:-webkit-autofill,
+input + .add-item:-webkit-autofill:hover,
+input + .add-item:-webkit-autofill:focus,
+input + .add-item:-webkit-autofill:active  {
+    box-shadow: 0 0 0 30px rgba(255, 255, 255) inset !important;
+  -webkit-box-shadow: 0 0 0 30px rgba(255, 255, 255) inset !important;
+}
+
+input + .search-bar:-webkit-autofill,
+input + .search-bar:-webkit-autofill:hover,
+input + .search-bar:-webkit-autofill:focus,
+input + .search-bar:-webkit-autofill:active  {
     box-shadow: 0 0 0 30px rgba(172 ,206 ,239, 0.5) inset !important;
   -webkit-box-shadow: 0 0 0 30px rgba(172 ,206 ,239, 0.5) inset !important;
 }
@@ -97,6 +105,10 @@ input:-webkit-autofill:active  {
     font-family: 'Rubik', sans-serif;
 }
 
+.form-input:valid{
+    border-bottom: 2px solid #55c57a;
+}
+
 .placeholder{
     position: absolute;
     font-family: 'Josefin Sans', sans-serif;
@@ -104,11 +116,7 @@ input:-webkit-autofill:active  {
     left: 30px;
     top: 20px;
     color: #000;
-    transition: 
-        top 0.3s ease,
-        font-size 0.3s ease,
-        color 0.3s ease;
-
+    transition: all 0.3s ease;
 }
 
 .form-input:valid + .placeholder,
