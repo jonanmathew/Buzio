@@ -1,0 +1,88 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Management</title>
+    <script src="https://kit.fontawesome.com/efdfaf7046.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;600&family=Playfair+Display:wght@700&family=Rubik:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/Buzio4.jpeg">  
+    <link rel="stylesheet" href="css/styles_ticket.css">
+</head>
+<body>
+    <header class="nav-bar">
+        <img class="nav-logo" src="images/Buzio5.png" alt="logo">
+        <a class="nav-title" href="/">Buzio</a>
+        <a class="nav-tags" href="/auth.html">Home</a> 
+        <a class="nav-tags">Explore</a>
+        <a class="nav-tags">Travel</a>
+        <a class="nav-tags">Blog</a> 
+        <a class="nav-tags">Pricing</a>
+    </header>
+    <section class="ticket-details" >
+        <h1>User Ticket</h1>
+        <h3>Bus details</h3>
+        <div class="bus-details">
+            <div class="bus-group">
+                <h4 class="bus-name"><%= busResult.BusName %> </h4>
+                <h5 class="bus-info">Driver: <%= busResult.DriverName %></h5>
+                <h5 class="bus-info">Bus Id: <%= busResult.BusId %></h5>
+                <h5 class="bus-info">User Id: <%= userResult.UserId %></h5>
+                <h6 class="bus-info">Bus Type: <%= busResult.BusType %> Seater &nbsp;| &nbsp;<%= busResult.SleeperType %></h6>
+                <h6 class="bus-info">Food Available: <%= busResult.FoodAvailable  %></h6>
+            </div>
+            <div class="bus-group">
+                <div>
+                    <h5 class="bus-from">From Details</h5>
+                    <h5 class="bus-to">To Details</h5>
+                </div>
+                <div>
+                    <h4 class="bus-start-time"><%= busResult.StartTime.slice(0,5) %></h4>
+                    <h6 class="bus-travel-time"><%= busResult.TravelTime.slice(0,5) %></h6>
+                    <h4 class="bus-end-time"><%= busResult.EndTime.slice(0,5) %></h4>
+                </div>
+                <div>
+                    <h5 class="bus-start-date"><%= String(busResult.StartDate).slice(0,15); %></h5>
+                    <h5 class="bus-end-date"><%= String(busResult.EndDate).slice(0,15) %></h5>
+                </div>
+                <div>
+                    <h4 class="bus-start-location"><%= busResult.StartLocation %></h4>
+                    <h4 class="bus-end-location"><%= busResult.EndLocation %></h4>
+                </div>
+            </div>
+            <div class="bus-group">
+                <h5 class="bus-misc"><%= busResult.Rating %>✰</h5>
+                <h6 class="bus-misc">Seats: <%= busResult.Seats %></h6>
+                <h4 class="bus-misc">₹<%= busResult.Price %></h4>
+                <img class="bus-amenities" src="images/wifi.png" alt="Wifi">
+                <img class="bus-amenities" src="images/water-bottle.png" alt="Water Bottle">
+                <img class="bus-amenities" src="images/charger.png" alt="Charger">
+                <img class="bus-amenities" src="images/cinema.png" alt="Movie">
+            </div>
+        </div>
+        <h3>User details</h3>
+        <div class="user-details">
+            <% for(let i=0;i<personResult.length;i++){ %> 
+                <div class="user-group">
+                    <h4>Person <%= i+1 %></h4>
+                    <h5 class="user-info">Name: <em><%= personResult[i].Name %></em></h5>
+                    <h5 class="user-info">Age: <em><%= personResult[i].Age %></em></h5>
+                    <h5 class="user-info">Gender: <em><%= personResult[i].Gender %></em></h5>
+                    <h5 class="user-info">Seat Preference: <em><%= personResult[i].SeatPreference %></em></h5>
+                </div>
+            <% } %> 
+            <div class="user-addtl-group">
+                <h4>Additional Information</h4>
+                <h5 class="user-addtl-info">Email: <em><%= userResult.Email %></em></h5>
+                <h5 class="user-addtl-info">PhoneNo: <em>+91 <%= userResult.PhoneNo %></em></h5>
+                <h5 class="user-addtl-info">Rating: <em><%= userResult.UserRating %></em></h5>
+            </div>
+            
+        </div>
+    </section>
+
+    <%- include("footer") %> 
+</body>
+</html>

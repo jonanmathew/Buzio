@@ -15,7 +15,7 @@
     <header class="nav-bar">
         <img class="nav-logo" src="images/Buzio5.png" alt="logo">
         <a class="nav-title" href="/">Buzio</a>
-        <a class="nav-tags">Home</a> 
+        <a class="nav-tags" href="/auth.html">Home</a> 
         <a class="nav-tags">Explore</a>
         <a class="nav-tags">Travel</a>
         <a class="nav-tags">Blog</a> 
@@ -29,15 +29,16 @@
                 No Buses Available for Search Query!
             </div>
         <% } else{ %>  
-            <div class="items">
+            <div class="bus-details">
             <% for(let i=0;i<result.length;i++){ %> 
-                <div class="item" >
-                    <form action="/booking.html">
+                <div class="bus" >
+                    <form action="/booking.html" method="get">
                         <div class="bus-1">
                             <h4 class="bus-name"><%= result[i].BusName %> </h4>
                             <h5 class="bus-id"><%= result[i].BusId %></h5>
-                            <input class="hidden-bus-details" type="text" name="id" value="<%= result[i].BusId %>" readonly>
-                            <input class="hidden-bus-details" type="number" name="personsNo" value="<%= persons %>" readonly>
+                            <input class="hidden-bus-details" type="text" name="busId" value="<%= result[i].BusId %>" readonly>
+                            <input class="hidden-bus-details" type="number" name="persons" value="<%= persons %>" readonly>
+                            <input class="hidden-bus-details" type="number" name="price" value="<%= result[i].Price %>" readonly>
                             <h6 class="bus-type"><%= result[i].BusType %> Seater &nbsp;| &nbsp;<%= result[i].SleeperType %></h6>
                             <% if(result[i].FoodAvailable === "Yes"){ %>
                                 <h6 class="bus-type">Food Available</h6>

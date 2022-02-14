@@ -17,20 +17,30 @@
         <a class="nav-title" href="/">Buzio</a>
     </header>
     <section>
-        <div class="item" >
+        <div class="bus-stops">
+            <h3>Bus Stops</h3>
+            <h5 class="bus-stop">---> &nbsp; Trivandrum</h5>
+            <h5 class="bus-stop">---> &nbsp; Kollam</h5>
+            <h5 class="bus-stop">---> &nbsp; Pathanamthitta</h5>
+            <h5 class="bus-stop">---> &nbsp; Alapuzha</h5>
+            <h5 class="bus-stop">---> &nbsp; Kottayam</h5>
+            <h5 class="bus-stop">---> &nbsp; Ernakulam</h5>
+        </div>
+        <div class="bus-details" >
             <h3>Bus details</h3>
             <div class="bus-group">
                 <h4 class="bus-name"><%= result.BusName %> </h4>
-                <h5 class="bus-details">Driver: <%= result.DriverName %></h5>
-                <h5 class="bus-details">Bus Id: <%= result.BusId %></h5>
-                <h5 class="bus-details">User Id: <%= userId %></h5>
-                <h6 class="bus-details">Bus Type: <%= result.BusType %> Seater &nbsp;| &nbsp;<%= result.SleeperType %></h6>
-                <h6 class="bus-details">Food Available: <%= result.FoodAvailable  %></h6>
+                <h5 class="bus-info">Driver: <%= result.DriverName %></h5>
+                <h5 class="bus-info">Bus Id: <%= result.BusId %></h5>
+                <h5 class="bus-info">User Id: <%= userId %></h5>
+                <h5 class="bus-info">Password: <%= password %></h5>
+                <h6 class="bus-info">Bus Type: <%= result.BusType %> Seater &nbsp;| &nbsp;<%= result.SleeperType %></h6>
+                <h6 class="bus-info">Food Available: <%= result.FoodAvailable  %></h6>
             </div>
             <div class="bus-group">
                 <div>
-                    <h5 class="bus-info1">From Details</h5>
-                    <h5 class="bus-info2">To Details</h5>
+                    <h5 class="bus-from">From Details</h5>
+                    <h5 class="bus-to">To Details</h5>
                     <h4 class="bus-start-time"><%= result.StartTime.slice(0,5) %></h4>
                     <h6 class="bus-travel-time"><%= result.TravelTime.slice(0,5) %></h6>
                     <h4 class="bus-end-time"><%= result.EndTime.slice(0,5) %></h4>
@@ -48,66 +58,63 @@
                 <h5 class="bus-misc">Rating: <%= result.Rating %>✰</h5>
                 <h6 class="bus-misc">Seats Available: <%= result.SeatsAvailable %>/<%= result.Seats %></h6>
                 <h6 class="bus-misc">Amenities: WiFi, Drinks, Charging Point, Movie</h6>
-                <h4 class="bus-misc">Price: ₹<%= result.Price %></h4>
+                <h4 class="bus-misc">Total Price: ₹<%= result.Price * persons %></h4>
     
             </div>
         </div>
-    
-        <div>
-            <form action="/user.html" method="post">
-                <% for(let i=0;i<persons;i++){ %>
-                    <div class="add-details">
-                        <h3>Person <%= i+1 %></h3>
-                        <div class="add-item">
-                            <input name="phoneNo" class="form-input" type="text"  required>
-                            <span class="placeholder">Name</span>
-                        </div>
-                        <div class="add-item">
-                            <input name="email" class="form-input" type="number" required>
-                            <span class="placeholder">Age</span>
-                        </div>
-                        <div class="add-item">
-                            <input name="gender" class="form-input" type="text" list="genders" required>
-                            <span class="placeholder">Gender</span>
-                            <datalist id="genders">
-                                <option value="Male"></option>
-                                <option value="Female"></option>
-                                <option value="Other"></option>
-                            </datalist>
-                        </div>
-                        <div class="add-item">
-                            <input name="seatPreference" class="form-input" type="text" list="seat-types" required>
-                            <span class="placeholder">Seat Preference</span>
-                            <datalist id="seat-types">
-                                <option value="Window"></option>
-                                <option value="Aisle"></option>
-                                <option value="Middle"></option>
-                            </datalist>
-                        </div>
-                    </div>
-                <% } %> 
+        <div class="notif-box">
+            <p class="notif-msg">Note down the username and password automatically generated and use it to login and view your ticket after booking.</p>
+        </div>
+        <form action="/booking.html" method="post">
+            <% for(let i=0;i<persons;i++){ %>
                 <div class="add-details">
-                    <h3>Additional Information</h3>
+                    <h3>Person <%= i+1 %></h3>
                     <div class="add-item">
-                        <input name="phoneNo" class="form-input" type="tel"  required>
-                        <span class="placeholder">Phone No</span>
+                        <input name="name<%= i %>" class="form-input" type="text"  required>
+                        <span class="placeholder">Name</span>
                     </div>
                     <div class="add-item">
-                        <input name="email" class="form-input" type="email" required>
-                        <span class="placeholder">Email</span>
+                        <input name="age<%= i %>" class="form-input" type="number" required>
+                        <span class="placeholder">Age</span>
                     </div>
                     <div class="add-item">
-                        <input name="persons" class="hidden-bus-details" type="number" value="<%= persons %>" readonly>
+                        <input name="gender<%= i %>" class="form-input" type="text" list="genders" required>
+                        <span class="placeholder">Gender</span>
+                        <datalist id="genders">
+                            <option value="Male"></option>
+                            <option value="Female"></option>
+                            <option value="Other"></option>
+                        </datalist>
                     </div>
                     <div class="add-item">
-                        <input name="rating" class="form-input" type="number" step="0.1" required>
-                        <span class="placeholder">Rating</span>
+                        <input name="seatPreference<%= i %>" class="form-input" type="text" list="seat-types" required>
+                        <span class="placeholder">Seat Preference</span>
+                        <datalist id="seat-types">
+                            <option value="Window"></option>
+                            <option value="Aisle"></option>
+                            <option value="Middle"></option>
+                        </datalist>
                     </div>
-                    <button class="btn-create"  type="submit">Create</button>
                 </div>
-                
-            </form>
-        </div>    
+            <% } %> 
+            <div class="add-details">
+                <h3>Additional Information</h3>
+                <div class="add-item">
+                    <input name="phoneNo" class="form-input" type="tel"  required>
+                    <span class="placeholder">Phone No</span>
+                </div>
+                <div class="add-item">
+                    <input name="email" class="form-input" type="email" required>
+                    <span class="placeholder">Email</span>
+                </div>
+                <input name="persons" class="hidden-bus-details" type="number" value="<%= persons %>" readonly>
+                <div class="add-item">
+                    <input name="rating" class="form-input" type="number" step="0.1" required>
+                    <span class="placeholder">Rating</span>
+                </div>
+                <button class="btn-create"  type="submit">Book</button>
+            </div>        
+        </form>
     </section>
     <%- include("footer") %> 
 </body>

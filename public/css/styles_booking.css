@@ -116,13 +116,38 @@ input:-webkit-autofill:active  {
 
 
 /* Bus Details */
-.item{
+.bus-stops{
+    position: sticky;
+    float: right;
+    top: 20px;
+    width: 15%;
+    background-color: rgba(172 ,206 ,239, 0.5);
+    margin: 20px 45px 20px 10px;
+    border-radius: 10px;
+    padding: 10px;
+    border: 2px solid #55c57a;
+}
+
+.bus-stop{
+    display: block;
+    margin: 5px 10px;
+}
+
+.bus-stop:first-of-type{
+    margin: 20px 10px 5px;
+}
+
+.bus-stop:last-of-type{
+    margin: 5px 10px 20px;
+}
+
+.bus-details{
     position: sticky;
     float: right;
     top: 20px;
     width: 25%;
     background-color: rgba(172 ,206 ,239, 0.5);
-    margin: 20px 50px 20px 30px;
+    margin: 20px 10px 20px 30px;
     border-radius: 10px;
     padding: 10px;
     border: 2px solid #55c57a;
@@ -136,15 +161,15 @@ input:-webkit-autofill:active  {
     margin: 5px 10px 2.5px;
 }
 
-.bus-details{
+.bus-info{
     margin: 2.5px 10px;
 }
 
-.bus-info1{
+.bus-from{
     margin: 10px 30px 2.5px 10px;
 }
 
-.bus-info2{
+.bus-to{
     margin: 10px 10px 2.5px 30px;
     float: right;
 }
@@ -191,15 +216,29 @@ input:-webkit-autofill:active  {
 
 /* User Details */
 
+.notif-box{
+    position: relative;
+    margin: 10px 50px;
+    padding: 10px;
+    width: 46%;
+    color: #fff;
+    background-color:orange;
+}
+
+.notif-msg{
+    font-size: 1rem;
+}
+
 .add-details{
     position: relative;
     display: inline-block;
     padding: 10px 40px;
-    width: 60%;
+    width: 46%;
     margin: 20px 30px 20px 50px;
     background-color: rgba(172 ,206 ,239, 0.5);
     border-radius: 10px;
     border: 2px solid #FF7757;
+    transition: all .3s;
 }
 
 .add-item{

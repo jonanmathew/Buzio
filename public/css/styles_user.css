@@ -139,12 +139,12 @@ input:-webkit-autofill:active  {
     padding-bottom: 350px;
 }
 
-.items{
+.bus-details{
     position: relative;
     display: inline-block;
 }
 
-.item{
+.bus{
     position: relative;
     background-color: rgba(172 ,206 ,239, 0.5);
     width: 810px;
@@ -155,7 +155,7 @@ input:-webkit-autofill:active  {
     transition: all .5s;
 }
 
-.item:hover{
+.bus:hover{
     border: 2px solid #55c57a;
     box-shadow: 0 0 30px #888888;
 }
@@ -256,28 +256,7 @@ input:-webkit-autofill:active  {
     left: 0;
     opacity: 0;
     cursor: pointer; 
-    /* visibility: hidden;
-    opacity: 0;
-    position: absolute;
-    left: 750px;
-    top: 190px;
-    padding: 5px 20px;
-    background-color: #55c57a;
-    color: #fff;
-    border: 2px solid #55c57a;
-    border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    font-size: 1.5rem;
-    font-family: 'Josefin Sans', sans-serif;
-    font-weight: 700;
-    cursor: pointer; */
 }
-
-/* .item:hover .btn-book{
-    box-shadow: 0 0 30px #888888;
-    visibility: visible;
-    opacity: 1;
-} */
 
 /* Search Bar */
 

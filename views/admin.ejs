@@ -45,43 +45,47 @@
             No Buses Available for Search Query!
         </div>
     <% } else{ %>  
-        <div class="items">
+        <div class="bus-details">
         <% for(let i=0;i<result.length;i++){ %> 
-            <div class="item" onclick="location.href='#popup-update'">
-                <div class="bus-1">
-                    <h4 class="bus-name"><%= result[i].BusName %> </h4>
-                    <h5 class="bus-id"><%= result[i].BusId %></h5>
-                    <h6 class="bus-type"><%= result[i].BusType %> Seater &nbsp;| &nbsp;<%= result[i].SleeperType %></h6>
-                    <% if(result[i].FoodAvailable === "Yes"){ %>
-                        <h6 class="bus-type">Food Available</h6>
-                    <% } else{ %>
-                        <h6 class="bus-type">Food Unavailable</h6>  
-                    <% } %> 
-                </div>
-                <div class="bus-2">
-                    <div>
-                        <h4 class="bus-start-time"><%= result[i].StartTime.slice(0,5) %></h4>
-                        <h6 class="bus-travel-time"><%= result[i].TravelTime.slice(0,5) %></h6>
-                        <h4 class="bus-end-time"><%= result[i].EndTime.slice(0,5) %></h4>
+            <div class="bus">
+                <form action="/admin.html#popup-update" method="get">
+                    <div class="bus-1">
+                        <h4 class="bus-name"><%= result[i].BusName %> </h4>
+                        <h5 class="bus-id"><%= result[i].BusId %></h5>
+                        <input type="text" class="hidden-bus-details" name="busId" value="<%= result[i].BusId %>" readonly>
+                        <h6 class="bus-type"><%= result[i].BusType %> Seater &nbsp;| &nbsp;<%= result[i].SleeperType %></h6>
+                        <% if(result[i].FoodAvailable === "Yes"){ %>
+                            <h6 class="bus-type">Food Available</h6>
+                        <% } else{ %>
+                            <h6 class="bus-type">Food Unavailable</h6>  
+                        <% } %> 
                     </div>
-                    <div>
-                        <h5 class="bus-start-date"><%= String(result[i].StartDate).slice(0,15); %></h5>
-                        <h5 class="bus-end-date"><%= String(result[i].EndDate).slice(0,15) %></h5>
+                    <div class="bus-2">
+                        <div>
+                            <h4 class="bus-start-time"><%= result[i].StartTime.slice(0,5) %></h4>
+                            <h6 class="bus-travel-time"><%= result[i].TravelTime.slice(0,5) %></h6>
+                            <h4 class="bus-end-time"><%= result[i].EndTime.slice(0,5) %></h4>
+                        </div>
+                        <div>
+                            <h5 class="bus-start-date"><%= String(result[i].StartDate).slice(0,15) %></h5>
+                            <h5 class="bus-end-date"><%= String(result[i].EndDate).slice(0,15) %></h5>
+                        </div>
+                        <div>
+                            <h4 class="bus-start-location"><%= result[i].StartLocation %></h4>
+                            <h4 class="bus-end-location"><%= result[i].EndLocation %></h4>
+                        </div>
                     </div>
-                    <div>
-                        <h4 class="bus-start-location"><%= result[i].StartLocation %></h4>
-                        <h4 class="bus-end-location"><%= result[i].EndLocation %></h4>
+                    <div class="bus-3">
+                        <h5 class="bus-misc"><%= result[i].Rating %>✰</h5>
+                        <h6 class="bus-misc">Seats Available: <%= result[i].SeatsAvailable %>/<%= result[i].Seats %></h6>
+                        <h4 class="bus-misc">₹<%= result[i].Price %></h4>
+                        <img class="bus-amenities" src="images/wifi.png" alt="Wifi">
+                        <img class="bus-amenities" src="images/water-bottle.png" alt="Water Bottle">
+                        <img class="bus-amenities" src="images/charger.png" alt="Charger">
+                        <img class="bus-amenities" src="images/cinema.png" alt="Movie">
                     </div>
-                </div>
-                <div class="bus-3">
-                    <h5 class="bus-misc"><%= result[i].Rating %>✰</h5>
-                    <h6 class="bus-misc">Seats Available: <%= result[i].SeatsAvailable %>/<%= result[i].Seats %></h6>
-                    <h4 class="bus-misc">₹<%= result[i].Price %></h4>
-                    <img class="bus-amenities" src="images/wifi.png" alt="Wifi">
-                    <img class="bus-amenities" src="images/water-bottle.png" alt="Water Bottle">
-                    <img class="bus-amenities" src="images/charger.png" alt="Charger">
-                    <img class="bus-amenities" src="images/cinema.png" alt="Movie">
-                </div>
+                    <button class="btn-update" type="submit"></button>
+                </form>
             </div>
         <% } %> 
         </div>
@@ -134,98 +138,26 @@
                         <span class="placeholder">Seats</span>
                     </div>
                     <div class="add-item">
-                        <input name="busType" class="form-input" type="text" required>
+                        <input name="busType" class="form-input" type="text" list="busType" required>
                         <span class="placeholder">Bus Type</span>
-                    </div>
-                    <div class="add-item">
-                        <input name="sleeperType" class="form-input" type="text" required>
-                        <span class="placeholder">Sleeper Type</span>
-                    </div>
-                    <div class="add-item">
-                        <input name="foodAvailable" class="form-input" type="text" required>
-                        <span class="placeholder">Food Available</span>
-                    </div>
-                    <div class="add-item">
-                        <input name="price" class="form-input" type="number" min="1" required>
-                        <span class="placeholder">Price</span>
-                    </div>
-                    <div class="add-item">
-                        <input name="rating" class="form-input" type="number" step="0.1" required>
-                        <span class="placeholder">Rating</span>
-                    </div>
-                    <button class="btn-create"  type="submit">Create</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <div id="popup-update" class="popup">
-        <div class="popup-content">
-            <a class="popup-close" href="#main-page">x</a>
-            <form action="/admin.html" method="post">
-                <div class="add-details">
-                    <h3>Update Bus Details</h3>
-                    <div class="add-item">
-                        <input name="busId" class="form-input" type="text" style="text-transform: uppercase;" value="<%= "MBT19CS069" %> " required>
-                        <span class="placeholder">Bus No</span>
-                    </div>
-                    <div class="add-item">
-                        <input name="busName" class="form-input" type="text" required>
-                        <span class="placeholder">Bus Name</span>
-                    </div>
-                    <div class="add-item">
-                        <input name="driverName" class="form-input" type="text" required>
-                        <span class="placeholder">Driver Name</span>
-                    </div>
-                    <div class="add-item">
-                        <input name="startLocation" class="form-input" type="text" required>
-                        <span class="placeholder">Start Location</span>
-                    </div>
-                    <div class="add-item">
-                        <input name="endLocation" class="form-input" type="text" required>
-                        <span class="placeholder">End Location</span>
-                    </div>
-                    <div class="add-item">
-                        <input name="startTime" class="form-input" type="time" required>
-                        <span class="placeholder">Start Time</span>
-                    </div>
-                    <div class="add-item">
-                        <input name="endTime" class="form-input" type="time" required>
-                        <span class="placeholder">End Time</span>
-                    </div>
-                    <div class="add-item">
-                        <input name="startDate" class="form-input" type="date" required>
-                        <span class="placeholder">Start Date</span>
-                    </div>
-                    <div class="add-item">
-                        <input name="endDate" class="form-input" type="date" required>
-                        <span class="placeholder">End Date</span>
-                    </div>
-                    <div class="add-item">
-                        <input name="seats" class="form-input" type="number" min="1" required>
-                        <span class="placeholder">Seats</span>
-                    </div>
-                    <div class="add-item">
-                        <input name="busType" class="form-input" type="text" list="bus-type" required>
-                        <span class="placeholder">Bus Type</span>
-                        <datalist id="bus-type">
+                        <datalist id="busType">
                             <option value="AC"></option>
                             <option value="Non AC"></option>
                         </datalist>
                     </div>
                     <div class="add-item">
-                        <input name="sleeperType" class="form-input" type="text" list="sleeper-type" required>
+                        <input name="sleeperType" class="form-input" type="text" list="sleeperType" required>
                         <span class="placeholder">Sleeper Type</span>
-                        <datalist id="sleeper-type">
+                        <datalist id="sleeperType">
                             <option value="Sleeper"></option>
                             <option value="Semi Sleeper"></option>
                             <option value="Non Sleeper"></option>
                         </datalist>
                     </div>
                     <div class="add-item">
-                        <input name="foodAvailable" class="form-input" type="text" list="food-availability" required>
+                        <input name="foodAvailable" class="form-input" type="text" list="foodAvailable" required>
                         <span class="placeholder">Food Available</span>
-                        <datalist id="food-availablity">
+                        <datalist id="foodAvailable">
                             <option value="Yes"></option>
                             <option value="No"></option>
                         </datalist>
@@ -238,11 +170,108 @@
                         <input name="rating" class="form-input" type="number" step="0.1" required>
                         <span class="placeholder">Rating</span>
                     </div>
-                    <button class="btn-create"  type="submit">Create</button>
+                    <button class="btn" type="submit">Create</button>
                 </div>
             </form>
         </div>
     </div>
-    
+
+    <div id="popup-update" class="popup">
+        <div class="popup-content">
+            <a class="popup-close" href="/admin.html">x</a>
+            <form action="/admin.html" method="post">
+                <div class="add-details">
+                    <h3>Update Bus Details</h3>
+                    <div class="notif-box">
+                        <p class="notif-msg">Note: Values of fields Bus No, Start Location, End Location can't be updated and any difference in values entered here won't be reflected in the database.</p>
+                    </div>
+                    <div class="add-item">
+                        <input name="busId" class="form-input" type="text" style="text-transform: uppercase;" value="<%= result.BusId %>" required>
+                        <span class="placeholder">Bus No</span>
+                    </div>
+                    <div class="add-item">
+                        <input name="busName" class="form-input" type="text" value="<%= result.BusName %>" required>
+                        <span class="placeholder">Bus Name</span>
+                    </div>
+                    <div class="add-item">
+                        <input name="driverName" class="form-input" type="text" value="<%= result.DriverName %>" required>
+                        <span class="placeholder">Driver Name</span>
+                    </div>
+                    <div class="add-item">
+                        <input name="startLocation" class="form-input" type="text" value="<%= result.StartLocation %>" required>
+                        <span class="placeholder">Start Location</span>
+                    </div>
+                    <div class="add-item">
+                        <input name="endLocation" class="form-input" type="text" value="<%= result.EndLocation %>" required>
+                        <span class="placeholder">End Location</span>
+                    </div>
+                    <div class="add-item">
+                        <input name="startTime" class="form-input" type="time" value="<%= result.StartTime %>" required>
+                        <span class="placeholder">Start Time</span>
+                    </div>
+                    <div class="add-item">
+                        <input name="endTime" class="form-input" type="time" value="<%= result.EndTime %>" required>
+                        <span class="placeholder">End Time</span>
+                    </div>
+                    <div class="add-item">
+                        <input name="startDate" class="form-input" type="date" value="<%= result.StartDate %>" required>
+                        <span class="placeholder">Start Date</span>
+                    </div>
+                    <div class="add-item">
+                        <input name="endDate" class="form-input" type="date" value="<%= result.EndDate %>" required>
+                        <span class="placeholder">End Date</span>
+                    </div>
+                    <div class="add-item">
+                        <input name="seats" class="form-input" type="number" min="1" value="<%= result.Seats %>" required>
+                        <span class="placeholder">Seats</span>
+                    </div>
+                    <div class="add-item">
+                        <input name="busType" class="form-input" type="text" list="bus-type" value="<%= result.BusType %>" required>
+                        <span class="placeholder">Bus Type</span>
+                        <datalist id="bus-type">
+                            <option value="AC"></option>
+                            <option value="Non AC"></option>
+                        </datalist>
+                    </div>
+                    <div class="add-item">
+                        <input name="sleeperType" class="form-input" type="text" list="sleeper-type" value="<%= result.SleeperType %>" required>
+                        <span class="placeholder">Sleeper Type</span>
+                        <datalist id="sleeper-type">
+                            <option value="Sleeper"></option>
+                            <option value="Semi Sleeper"></option>
+                            <option value="Non Sleeper"></option>
+                        </datalist>
+                    </div>
+                    <div class="add-item">
+                        <input name="foodAvailable" class="form-input" type="text" list="food-availability" value="<%= result.FoodAvailable %>" required>
+                        <span class="placeholder">Food Available</span>
+                        <datalist id="food-availablity">
+                            <option value="Yes"></option>
+                            <option value="No"></option>
+                        </datalist>
+                    </div>
+                    <div class="add-item">
+                        <input name="price" class="form-input" type="number" min="1" value="<%= result.Price %>" required>
+                        <span class="placeholder">Price</span>
+                    </div>
+                    <div class="add-item">
+                        <input name="rating" class="form-input" type="number" step="0.1" value="<%= result.Rating %>" required>
+                        <span class="placeholder">Rating</span>
+                    </div>
+                    <button class="btn"  type="submit">Update</button>
+                    <form action="/admin.html#popup-delete">
+                        <input type="text" name="busId" class="hidden-bus-details" value="<%= result.BusId %> ">
+                        <button class="btn" type="submit">Delete</button>
+                    </form>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="popup-delete" class="popup">
+        <div class="popup-content">
+            <p>Are you sure you want to Delete?</p>
+            <a class="popup-close" href="/admin.html">x</a>
+        </div>
+    </div>
 </body>
 </html>
