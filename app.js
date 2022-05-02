@@ -26,7 +26,21 @@ con.connect(function(err){
 });
 
 app.get("/",function(req,res){
-    res.render("index",{});
+    let date = getCurrentDate();
+    res.render("index",{date: date});
+});
+
+app.get("/main.html", function(req,res){
+    let from = req.query.from;
+    let to = req.query.to;
+    let persons = req.query.persons;
+    let date = req.query.date;
+    let values = [from, to, Number(persons), date];
+    let sql = "SELECT * FROM BusDetails WHERE StartLocation = ? AND EndLocation = ? AND SeatsAvailable >= ? AND StartDate = ?";
+    con.query(sql, values, function(err, result) {
+        if (err) throw err;
+        res.render("main",{from: from, to: to, persons: persons, date: date, result: result});
+    });
 });
 
 app.get("/auth.html", function(req,res){
@@ -39,54 +53,57 @@ app.get("/admin.html", function(req,res){
     let to = req.query.to;
     let persons = req.query.persons;
     let date = req.query.date;
+    if (date == null){
+        date = getCurrentDate();
+    }
+    let time = getCurrentTime();
+    console.log(time);
+    let stops = "";
     let values = [from, to, Number(persons), date];
     let sql;
     if(busId != null){
         sql = "SELECT * FROM BusDetails WHERE BusId = ?"
         con.query(sql, busId, function(err, result) {
             if (err) throw err;
-            startDate = dateFormat(result[0].StartDate);
-            endDate = dateFormat(result[0].EndDate);
+            let startDate = dateFormat(result[0].StartDate);
+            let endDate = dateFormat(result[0].EndDate);
             result[0].StartDate = startDate;
             result[0].EndDate = endDate;
-            res.render("admin",{from: from, to: to, persons: persons, date: date, result: result[0]});
+            let stopSql = "SELECT BusStop FROM StopDetails WHERE BusId = ?";
+            con.query(stopSql, busId, function(stopErr,stopResult){
+                if (stopErr) throw stopErr;
+                for (let i=0;i<stopResult.length;i++){
+                    stops += stopResult[i].BusStop;
+                    if(i+1 != stopResult.length){
+                        stops += ", ";
+                    }
+                }
+                res.render("admin",{from: from, to: to, persons: persons, date: date, time: time, result: result[0], stops: stops});
+            });
         });
     }
     else if(from == null){
         sql = "SELECT * FROM BusDetails";
         con.query(sql, values, function(err, result) {
             if (err) throw err;
-            res.render("admin",{from: from, to: to, persons: persons, date: date, result: result});
+            res.render("admin",{from: from, to: to, persons: persons, date: date, time: time, result: result, stops: stops});
         });
     } else{
         sql = "SELECT * FROM BusDetails WHERE StartLocation = ? AND EndLocation = ? AND Seats >= ? AND StartDate = ?";
         con.query(sql, values, function(err, result) {
             if (err) throw err;
-            res.render("admin",{from: from, to: to, persons: persons, date: date, result: result});
+            res.render("admin",{from: from, to: to, persons: persons, date: date, time: time, result: result, stops: stops});
         });
     }
 
 });
 
-app.get("/user.html", function(req,res){
-    let from = req.query.from;
-    let to = req.query.to;
-    let persons = req.query.persons;
-    let date = req.query.date;
-    let values = [from, to, Number(persons), date];
-    let sql = "SELECT * FROM BusDetails WHERE StartLocation = ? AND EndLocation = ? AND SeatsAvailable >= ? AND StartDate = ?";
-    con.query(sql, values, function(err, result) {
-        if (err) throw err;
-        res.render("user",{from: from, to: to, persons: persons, date: date, result: result});
-    });
-});
-
 app.get("/booking.html", function(req,res){
-    let temp_sql = "SELECT UserId FROM UserDetails";
-    con.query(temp_sql, function(err, result) {
-        if (err) throw err;
-        for (let i = 0; i < result.length; i++) {
-            userIds.push(result[i].UserId);
+    let userSql = "SELECT UserId FROM UserDetails";
+    con.query(userSql, function(userErr, userResult) {
+        if (userErr) throw userErr;
+        for (let i = 0; i < userResult.length; i++) {
+            userIds.push(userResult[i].UserId);
             console.log(userIds);
         }
         let busId = req.query.busId;
@@ -95,17 +112,22 @@ app.get("/booking.html", function(req,res){
         personsTemp = persons;
         priceTemp = req.query.price;
         let userId = "JVA" + String(Number(userIds.at(-1).substring(3)) + 10);
+        userIds.push(userId);
         let password = generatePassword();
         passwordTemp = password;
-        let sql = "SELECT * FROM BusDetails WHERE BusId = ?";
-        con.query(sql, busId, function(err, result) {
-            if (err) throw err;
-            res.render("booking",{result: result[0], persons: persons, userId: userId, password: password});
+        let busSql = "SELECT * FROM BusDetails WHERE BusId = ?";
+        con.query(busSql, busId, function(busErr, busResult) {
+            if (busErr) throw busErr;
+            let stopSql = "SELECT BusStop FROM StopDetails WHERE BusId = ?";
+            con.query(stopSql, busId, function(stopErr,stopResult){
+                if (stopErr) throw stopErr;
+                res.render("booking",{result: busResult[0], persons: persons, userId: userId, password: password, stopResult: stopResult});
+            });
         });
     });
 });
 
-app.get("/ticket.html", function(req,res){
+app.get("/user.html", function(req,res){
     let userId = req.query.userId;
     console.log(userId);
     let userSql = "SELECT * FROM UserDetails WHERE UserId = ?";
@@ -115,11 +137,15 @@ app.get("/ticket.html", function(req,res){
         let busSql = "SELECT * FROM BusDetails WHERE BusId = ?";
         con.query(busSql, busId, function(busErr,busResult){
             if (busErr) throw busErr;
-            let personSql = "SELECT * FROM PersonDetails WHERE UserId = ?";
-            con.query(personSql, userId, function(personErr, personResult){
-                if (personErr) throw personErr;
-                res.render("ticket",{busResult: busResult[0], userResult: userResult[0], personResult: personResult});
-                console.log(busResult,userResult,personResult);
+            let stopSql = "SELECT BusStop FROM StopDetails WHERE BusId = ?";
+            con.query(stopSql, busId, function(stopErr,stopResult){
+                if (stopErr) throw stopErr;
+                let personSql = "SELECT * FROM PersonDetails WHERE UserId = ?";
+                con.query(personSql, userId, function(personErr, personResult){
+                    if (personErr) throw personErr;
+                    res.render("user",{busResult: busResult[0],stopResult: stopResult, userResult: userResult[0], personResult: personResult});
+                    console.log(busResult,userResult,personResult);
+                });
             });
         });
     });
@@ -144,7 +170,7 @@ app.post("/auth.html", function(req,res){
                 res.redirect("/admin.html");
             } else{
                 let string = encodeURIComponent(userValue);
-                res.redirect('/ticket.html?userId=' + string);
+                res.redirect('/user.html?userId=' + string);
             }
         } else{
             validCredentials = false;
@@ -154,6 +180,7 @@ app.post("/auth.html", function(req,res){
 });
 
 app.post("/admin.html", function(req,res){
+    let isDelete = req.body.isDelete;
     let busId = req.body.busId;
     let busName = req.body.busName;
     let driverName = req.body.driverName;
@@ -161,7 +188,6 @@ app.post("/admin.html", function(req,res){
     let endLocation = req.body.endLocation;
     let startTime = req.body.startTime;
     let endTime = req.body.endTime;
-    let travelTime = travelTimeDifference(startTime,endTime);
     let startDate = req.body.startDate;
     let endDate = req.body.endDate;
     let seats = Number(req.body.seats);
@@ -171,25 +197,54 @@ app.post("/admin.html", function(req,res){
     let foodAvailable = req.body.foodAvailable;
     let price = Number(req.body.price);
     let rating = Number(req.body.rating);
-    let sql = "SELECT * FROM BusDetails WHERE BusId = ?";
     let values;
+    let sql = "SELECT BusId FROM BusDetails WHERE BusId = ?";
     con.query(sql, busId, function(err, result){
-        console.log(result);
-        if (result.length == 0){
-            sql = "INSERT INTO BusDetails VALUES (?)";
-            values = [busId, busName, driverName, startLocation, endLocation, startTime, endTime, travelTime, startDate, endDate, seats, seatsAvailable, busType, sleeperType, foodAvailable, price, rating];
-            // delSql = "DELETE FROM BusDetails WHERE BusId = ?";
-            // con.query(sql, busId, function(err, result){
-            //     if (err) throw err;
-            // });
-            con.query(sql, [values], function(err, result){
-                if (err) throw err;
+        if (err) throw err;
+        if (isDelete == "true"){
+            let delStopSql = "DELETE FROM StopDetails WHERE BusId = ?";
+            con.query(delStopSql, busId, function(delStopErr,selStopResult){
+                if (delStopErr) throw delStopErr;
+                let delBusSql = "DELETE FROM BusDetails WHERE BusId = ?";
+                con.query(delBusSql, busId, function(delBusErr, delBusResult){
+                    if (delBusErr) throw delBusErr;
+                    console.log(delBusResult);
+                });
             });
+        } else if (result.length == 0){
+            let stops = req.body.stops.split(", ");
+            let travelTime = travelTimeDifference(startTime,endTime);
+            let busSql = "INSERT INTO BusDetails VALUES (?)";
+            values = [busId, busName, driverName, startLocation, endLocation, startTime, endTime, travelTime, startDate, endDate, seats, seatsAvailable, busType, sleeperType, foodAvailable, price, rating];
+            con.query(busSql, [values], function(busErr, busResult){
+                if (busErr) throw busErr;
+                stopSql = "INSERT INTO StopDetails VALUES (?)";
+                for(let i=0;i<stops.length;i++){
+                    values = [busId,stops[i]];
+                    con.query(stopSql, [values], function(stopErr,stopResult){
+                        if (stopErr) throw stopErr;
+                    });
+                }
+            });
+
         } else{
-            sql = "UPDATE BusDetails Set BusName = ?, DriverName = ?, StartTime = ?, EndTime = ?, TravelTime = ?, StartDate = ?, EndDate = ?, Seats = ?, SeatsAvailable = ?, BusType = ?, SleeperType = ?, FoodAvailable = ?, Price = ?, Rating = ? WHERE BusId = ?";
+            let stops = req.body.stops.split(", ");
+            let travelTime = travelTimeDifference(startTime,endTime);
+            let busSql = "UPDATE BusDetails Set BusName = ?, DriverName = ?, StartTime = ?, EndTime = ?, TravelTime = ?, StartDate = ?, EndDate = ?, Seats = ?, SeatsAvailable = ?, BusType = ?, SleeperType = ?, FoodAvailable = ?, Price = ?, Rating = ? WHERE BusId = ?";
             values = [busName, driverName, startTime, endTime, travelTime, startDate, endDate, seats, seatsAvailable, busType, sleeperType, foodAvailable, price, rating, busId];
-            con.query(sql, values, function(err, result){
-                if (err) throw err;
+            con.query(busSql, values, function(busErr, busResult){
+                if (busErr) throw busErr;
+            });
+            stopSql = "DELETE FROM StopDetails WHERE BusId = ?";
+            con.query(stopSql, busId, function(stopErr,stopResult){
+                if (stopErr) throw stopErr;
+                stopSql = "INSERT INTO StopDetails VALUES (?)";
+                for(let i=0;i<stops.length;i++){
+                    values = [busId,stops[i]];
+                    con.query(stopSql, [values], function(stopErr,stopResult){
+                        if (stopErr) throw stopErr;
+                    });
+                }
             });
         }
     });
@@ -234,7 +289,7 @@ app.post("/booking.html", function(req,res){
             console.log(result);
         });
     });
-    let authSql = "INSERT INTO UserAuthDetails VALUES (?)";
+    let authSql = "INSERT INTO AuthDetails VALUES (?)";
     let authValues = [userId, password];
     con.query(authSql, [authValues], function(err, result){
         if (err) throw err;
@@ -282,6 +337,23 @@ function dateFormat(dateISO){
     }
     
     return year+'-' + month + '-'+dt;
+}
+
+function getCurrentDate(){
+    let date = new Date();
+    return dateFormat(date.toISOString());
+}
+
+function getCurrentTime(){
+    let time = new Date();
+    if (time.getMinutes() < 10){
+        return time.getHours() + ":0" + time.getMinutes();
+    } else if (time.getHours() < 10){
+        return "0" + time.getHours() + ":" + time.getMinutes();
+    } else{
+        return time.getHours() + ":" + time.getMinutes();
+    }
+    
 }
 
 app.listen(3000);

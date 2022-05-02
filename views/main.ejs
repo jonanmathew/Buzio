@@ -1,0 +1,109 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Management</title>
+    <script src="https://kit.fontawesome.com/efdfaf7046.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;600&family=Playfair+Display:wght@700&family=Rubik:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/Buzio4.jpeg">  
+    <link rel="stylesheet" href="css/styles_main.css">
+</head>
+<body>
+    <header class="nav-bar">
+        <img class="nav-logo" src="images/Buzio5.png" alt="logo">
+        <a class="nav-title" href="/">Buzio</a>
+        <a class="nav-tags" href="">Home</a> 
+        <a class="nav-tags" href="">Explore</a>
+        <a class="nav-tags" href="">Travel</a>
+        <a class="nav-tags" href="">Blog</a> 
+        <a class="nav-tags" href="">Pricing</a>
+        <a class="nav-admin" href="auth.html">Login</a>
+    </header>
+
+    <section class="content">  
+        <% if(result.length == 0){ %>
+            <div class="notif-msg">
+                No Buses Available for Search Query!
+            </div>
+        <% } else{ %>  
+            <div class="bus">
+            <% for(let i=0;i<result.length;i++){ %> 
+                <form action="/booking.html" method="get">
+                    <div class="bus-details" >
+                        <div class="bus-group">
+                            <h4 class="bus-name"><%= result[i].BusName %> </h4>
+                            <h5 class="bus-id"><%= result[i].BusId %></h5>
+                            <input class="hidden-bus-details" type="text" name="busId" value="<%= result[i].BusId %>" readonly>
+                            <input class="hidden-bus-details" type="number" name="persons" value="<%= persons %>" readonly>
+                            <input class="hidden-bus-details" type="number" name="price" value="<%= result[i].Price %>" readonly>
+                            <h6 class="bus-info"><%= result[i].BusType %> Seater &nbsp;| &nbsp;<%= result[i].SleeperType %></h6>
+                            <% if(result[i].FoodAvailable === "Yes"){ %>
+                                <h6 class="bus-info">Food Available</h6>
+                            <% } else{ %>
+                                <h6 class="bus-info">Food Unavailable</h6>  
+                            <% } %> 
+                        </div>
+                        <div class="bus-group">
+                            <div>
+                                <h4 class="bus-start-time"><%= result[i].StartTime.slice(0,5) %></h4>
+                                <h6 class="bus-travel-time"><%= result[i].TravelTime.slice(0,5) %></h6>
+                                <h4 class="bus-end-time"><%= result[i].EndTime.slice(0,5) %></h4>
+                            </div>
+                            <div>
+                                <h5 class="bus-start-date"><%= String(result[i].StartDate).slice(0,15); %></h5>
+                                <h5 class="bus-end-date"><%= String(result[i].EndDate).slice(0,15) %></h5>
+                            </div>
+                            <div>
+                                <h4 class="bus-start-location"><%= result[i].StartLocation %></h4>
+                                <h4 class="bus-end-location"><%= result[i].EndLocation %></h4>
+                            </div>
+                        </div>
+                        <div class="bus-group">
+                            <h5 class="bus-misc"><%= result[i].Rating %>✰</h5>
+                            <h6 class="bus-misc">Seats Available: <%= result[i].SeatsAvailable %>/<%= result[i].Seats %></h6>
+                            <h4 class="bus-misc">₹<%= result[i].Price %></h4>
+                            <div>
+                                <img class="bus-amenities" src="images/wifi.png" alt="Wifi">
+                                <img class="bus-amenities" src="images/water-bottle.png" alt="Water Bottle">
+                                <img class="bus-amenities" src="images/charger.png" alt="Charger">
+                                <img class="bus-amenities" src="images/cinema.png" alt="Movie">
+                            </div>
+                        </div>
+                        <button class="btn-book" type="submit"></button>
+                    </div>
+                </form>
+            <% } %> 
+            </div>
+        <% } %> 
+
+        <div class="search-bar">
+            <form action="/main.html" method="get">
+                <div class="search-details">
+                    <div class="search-item">
+                        <input class="form-input" type="text" name="from" value="<%= from %>" required>
+                        <span class="placeholder">From</span>
+                    </div>
+                    <div class="search-item">
+                        <input class="form-input" type="text" name="to" value="<%= to %>" required>
+                        <span class="placeholder">To</span>
+                    </div>
+                    <div class="search-item">
+                        <input class="form-input" type="number" min="1" max="5" name="persons" value="<%= persons %>" required>
+                        <span class="placeholder">Person(s)</span>
+                    </div>
+                    <div class="search-item">
+                        <input class="form-input" type="date" name="date" value="<%= date %>" required>
+                        <span class="placeholder">Date</span>
+                    </div>
+                </div>
+                <button class="btn" type="submit">Search</button>
+            </form>
+        </div>    
+    </section>
+
+    <%- include("footer") %> 
+</body>
+</html>

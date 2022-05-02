@@ -59,11 +59,6 @@ input:-webkit-autofill:active  {
     position: relative;
     left: 105px;
     top: 8px;
-    background: url("../images/Buzio5.png") no-repeat;
-}
-
-.nav-logo:hover{
-    background: url(../images/Buzio8.png) no-repeat;
 }
 
 .nav-title{

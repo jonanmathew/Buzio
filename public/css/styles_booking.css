@@ -166,33 +166,33 @@ input:-webkit-autofill:active  {
 }
 
 .bus-from{
-    margin: 10px 30px 2.5px 10px;
+    margin: 10px 10px 2.5px;
 }
 
 .bus-to{
-    margin: 10px 10px 2.5px 30px;
+    margin: 10px 10px 2.5px;
     float: right;
 }
 
 .bus-start-time{
-    margin: 10px 30px 2.5px 10px;
+    margin: 10px 10px 2.5px;
 }
 
 .bus-travel-time{
-    margin: 10px 30px 2.5px;
+    margin: 10px 50px 2.5px;
 }
 
 .bus-end-time{
-    margin: 10px 10px 2.5px 30px;
+    margin: 10px 10px 2.5px;
     float: right;
 }
 
 .bus-start-date{
-    margin: 2.5px 19.5px 15px 10px;
+    margin: 2.5px 10px 15px;
 }
 
 .bus-end-date{
-    margin: 2.5px 10px 15px 19.5px;
+    margin: 2.5px 10px 15px;
     float: right;
 }
 
@@ -255,12 +255,13 @@ input:-webkit-autofill:active  {
     opacity: 0;
 }
 
-.btn-create{
+.btn{
     display: block;
     position: relative;
     margin: 25px auto;      
     padding: 20px 30px; 
     text-align: center;
+    border-radius: 5px;
     font-size: 1.5rem;
     font-family: 'Josefin Sans', sans-serif;
     font-weight: 700;
@@ -271,7 +272,7 @@ input:-webkit-autofill:active  {
     transition: all 0.3s;
 }
 
-.btn-create:hover{
+.btn:hover{
     transform: translateY(-3px);
     box-shadow: 0 1rem 20px rgb(0 0 0 / 20%);
 }

@@ -41,33 +41,34 @@
     </div>
 
     <% if(result.length == 0){ %>
-        <div class="error-msg">
+        <div class="notif-msg">
             No Buses Available for Search Query!
         </div>
     <% } else{ %>  
-        <div class="bus-details">
+        <div class="bus">
         <% for(let i=0;i<result.length;i++){ %> 
-            <div class="bus">
-                <form action="/admin.html#popup-update" method="get">
-                    <div class="bus-1">
+                <div class="bus-details" >
+                    <div class="bus-group">
                         <h4 class="bus-name"><%= result[i].BusName %> </h4>
                         <h5 class="bus-id"><%= result[i].BusId %></h5>
-                        <input type="text" class="hidden-bus-details" name="busId" value="<%= result[i].BusId %>" readonly>
-                        <h6 class="bus-type"><%= result[i].BusType %> Seater &nbsp;| &nbsp;<%= result[i].SleeperType %></h6>
+                        <input class="hidden-bus-details" type="text" name="busId" value="<%= result[i].BusId %>" readonly>
+                        <input class="hidden-bus-details" type="number" name="persons" value="<%= persons %>" readonly>
+                        <input class="hidden-bus-details" type="number" name="price" value="<%= result[i].Price %>" readonly>
+                        <h6 class="bus-info"><%= result[i].BusType %> Seater &nbsp;| &nbsp;<%= result[i].SleeperType %></h6>
                         <% if(result[i].FoodAvailable === "Yes"){ %>
-                            <h6 class="bus-type">Food Available</h6>
+                            <h6 class="bus-info">Food Available</h6>
                         <% } else{ %>
-                            <h6 class="bus-type">Food Unavailable</h6>  
+                            <h6 class="bus-info">Food Unavailable</h6>  
                         <% } %> 
                     </div>
-                    <div class="bus-2">
+                    <div class="bus-group">
                         <div>
                             <h4 class="bus-start-time"><%= result[i].StartTime.slice(0,5) %></h4>
                             <h6 class="bus-travel-time"><%= result[i].TravelTime.slice(0,5) %></h6>
                             <h4 class="bus-end-time"><%= result[i].EndTime.slice(0,5) %></h4>
                         </div>
                         <div>
-                            <h5 class="bus-start-date"><%= String(result[i].StartDate).slice(0,15) %></h5>
+                            <h5 class="bus-start-date"><%= String(result[i].StartDate).slice(0,15); %></h5>
                             <h5 class="bus-end-date"><%= String(result[i].EndDate).slice(0,15) %></h5>
                         </div>
                         <div>
@@ -75,22 +76,29 @@
                             <h4 class="bus-end-location"><%= result[i].EndLocation %></h4>
                         </div>
                     </div>
-                    <div class="bus-3">
+                    <div class="bus-group">
                         <h5 class="bus-misc"><%= result[i].Rating %>✰</h5>
                         <h6 class="bus-misc">Seats Available: <%= result[i].SeatsAvailable %>/<%= result[i].Seats %></h6>
                         <h4 class="bus-misc">₹<%= result[i].Price %></h4>
-                        <img class="bus-amenities" src="images/wifi.png" alt="Wifi">
-                        <img class="bus-amenities" src="images/water-bottle.png" alt="Water Bottle">
-                        <img class="bus-amenities" src="images/charger.png" alt="Charger">
-                        <img class="bus-amenities" src="images/cinema.png" alt="Movie">
+                        <div>
+                            <img class="bus-amenities" src="images/wifi.png" alt="Wifi">
+                            <img class="bus-amenities" src="images/water-bottle.png" alt="Water Bottle">
+                            <img class="bus-amenities" src="images/charger.png" alt="Charger">
+                            <img class="bus-amenities" src="images/cinema.png" alt="Movie">
+                        </div>
                     </div>
-                    <button class="btn-update" type="submit"></button>
-                </form>
-            </div>
+                    <form action="/admin.html#popup-update" method="get">
+                        <input type="text" name="busId" class="hidden-bus-details" value="<%= result[i].BusId %>">
+                        <button class="btn-side btn-update" type="submit">Update</button>
+                    </form>
+                    <form action="/admin.html#popup-delete" method="get">
+                        <input type="text" name="busId" class="hidden-bus-details" value="<%= result[i].BusId %>">
+                        <button class="btn-side btn-delete" type="submit">Delete</button>
+                    </form>
+                </div>
         <% } %> 
         </div>
     <% } %> 
-    
     <div id="popup-create" class="popup">
         <div class="popup-content">
             <a class="popup-close" href="#main-page">x</a>
@@ -118,19 +126,19 @@
                         <span class="placeholder">End Location</span>
                     </div>
                     <div class="add-item">
-                        <input name="startTime" class="form-input" type="time" required>
+                        <input name="startTime" class="form-input" type="time" value="<%= time %>" required>
                         <span class="placeholder">Start Time</span>
                     </div>
                     <div class="add-item">
-                        <input name="endTime" class="form-input" type="time" required>
+                        <input name="endTime" class="form-input" type="time" value="<%= time %>" required>
                         <span class="placeholder">End Time</span>
                     </div>
                     <div class="add-item">
-                        <input name="startDate" class="form-input" type="date" required>
+                        <input name="startDate" class="form-input" type="date" value="<%= date %>" required>
                         <span class="placeholder">Start Date</span>
                     </div>
                     <div class="add-item">
-                        <input name="endDate" class="form-input" type="date" required>
+                        <input name="endDate" class="form-input" type="date" value="<%= date %>" required>
                         <span class="placeholder">End Date</span>
                     </div>
                     <div class="add-item">
@@ -167,20 +175,23 @@
                         <span class="placeholder">Price</span>
                     </div>
                     <div class="add-item">
-                        <input name="rating" class="form-input" type="number" step="0.1" required>
+                        <input name="rating" class="form-input" type="number" step="0.1" min="1" max="5" required>
                         <span class="placeholder">Rating</span>
+                    </div>
+                    <div class="add-item" style="display: block;">
+                        <textarea name="stops" class="form-input" type="text" rows="2" style="width: 100%;" required></textarea>
+                        <span class="placeholder">Stops(separate with ", ")</span>
                     </div>
                     <button class="btn" type="submit">Create</button>
                 </div>
             </form>
         </div>
     </div>
-
     <div id="popup-update" class="popup">
         <div class="popup-content">
             <a class="popup-close" href="/admin.html">x</a>
-            <form action="/admin.html" method="post">
-                <div class="add-details">
+            <div class="add-details">
+                <form action="/admin.html" method="post">
                     <h3>Update Bus Details</h3>
                     <div class="notif-box">
                         <p class="notif-msg">Note: Values of fields Bus No, Start Location, End Location can't be updated and any difference in values entered here won't be reflected in the database.</p>
@@ -255,22 +266,34 @@
                         <span class="placeholder">Price</span>
                     </div>
                     <div class="add-item">
-                        <input name="rating" class="form-input" type="number" step="0.1" value="<%= result.Rating %>" required>
+                        <input name="rating" class="form-input" type="number" step="0.1" min="1" max="5" value="<%= result.Rating %>" required>
                         <span class="placeholder">Rating</span>
                     </div>
-                    <button class="btn"  type="submit">Update</button>
-                    <form action="/admin.html#popup-delete">
-                        <input type="text" name="busId" class="hidden-bus-details" value="<%= result.BusId %> ">
-                        <button class="btn" type="submit">Delete</button>
-                    </form>
-                </div>
-            </form>
+                    <div class="add-item" style="display: block;">
+                        <textarea name="stops" class="form-input" type="text" rows="2" style="width: 100%;" required><%= stops %></textarea>
+                        <span class="placeholder">Stops(separate with ", ")</span>
+                    </div>
+                    <button class="btn" type="submit">Update</button>
+                </form>
+            </div>
         </div>
     </div>
     <div id="popup-delete" class="popup">
         <div class="popup-content">
-            <p>Are you sure you want to Delete?</p>
-            <a class="popup-close" href="/admin.html">x</a>
+            <form action="/admin.html" method="post">
+                <div class="notif-box">
+                    <p class="notif-msg">Note: Action is Permanent and can't be unchanged.</p>
+                </div>
+                <h3 name="busId">Are you sure you want to Delete Bus No <%= result.BusId %>?</h3>
+                <input type="text" class="hidden-bus-details" name="busId" value="<%= result.BusId %>" readonly>
+                <div class="btn-choice">
+                    <input type="text"  class="hidden-bus-details" name="isDelete" value="true" readonly>
+                    <button class="btn btn-yes"  type="submit">Yes</button>
+                </div>
+                <div class="btn-choice">
+                    <a class="btn btn-no" href="/admin.html">No</a>
+                </div>
+            </form>
         </div>
     </div>
 </body>

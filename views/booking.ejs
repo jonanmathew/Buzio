@@ -19,12 +19,9 @@
     <section>
         <div class="bus-stops">
             <h3>Bus Stops</h3>
-            <h5 class="bus-stop">---> &nbsp; Trivandrum</h5>
-            <h5 class="bus-stop">---> &nbsp; Kollam</h5>
-            <h5 class="bus-stop">---> &nbsp; Pathanamthitta</h5>
-            <h5 class="bus-stop">---> &nbsp; Alapuzha</h5>
-            <h5 class="bus-stop">---> &nbsp; Kottayam</h5>
-            <h5 class="bus-stop">---> &nbsp; Ernakulam</h5>
+            <% for(let i=0;i<stopResult.length;i++){ %>
+                <h5 class="bus-stop">---> &nbsp; <%= stopResult[i].BusStop %></h5>
+            <% } %>  
         </div>
         <div class="bus-details" >
             <h3>Bus details</h3>
@@ -41,6 +38,8 @@
                 <div>
                     <h5 class="bus-from">From Details</h5>
                     <h5 class="bus-to">To Details</h5>
+                </div>
+                <div>
                     <h4 class="bus-start-time"><%= result.StartTime.slice(0,5) %></h4>
                     <h6 class="bus-travel-time"><%= result.TravelTime.slice(0,5) %></h6>
                     <h4 class="bus-end-time"><%= result.EndTime.slice(0,5) %></h4>
@@ -63,7 +62,7 @@
             </div>
         </div>
         <div class="notif-box">
-            <p class="notif-msg">Note down the username and password automatically generated and use it to login and view your ticket after booking.</p>
+            <p class="notif-msg">Note down the username and password and use it to login and view your ticket after booking.</p>
         </div>
         <form action="/booking.html" method="post">
             <% for(let i=0;i<persons;i++){ %>
@@ -109,10 +108,10 @@
                 </div>
                 <input name="persons" class="hidden-bus-details" type="number" value="<%= persons %>" readonly>
                 <div class="add-item">
-                    <input name="rating" class="form-input" type="number" step="0.1" required>
+                    <input name="rating" class="form-input" type="number" step="0.1" min="1" max="5" required>
                     <span class="placeholder">Rating</span>
                 </div>
-                <button class="btn-create"  type="submit">Book</button>
+                <button class="btn"  type="submit">Book</button>
             </div>        
         </form>
     </section>
